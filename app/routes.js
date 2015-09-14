@@ -1,32 +1,50 @@
-var User = require('./models/user');
+var Desk = require('./models/desk');
+var path = require("path");
 
     module.exports = function(app) {
-
-      var path = require("path");
 
         // server routes ===========================================================
         // handle things like api calls
         // authentication routes
 
-        app.get('/users', function(req, res) {
-            // use mongoose to get all users in the database
-            User.find(function(err, users) {
+        // sample api route
+        app.get('/api/desks', function(req, res) {
+            // use mongoose to get all nerds in the database
+            Desk.find(function(err, desks) {
 
                 // if there is an error retrieving, send the error.
                                 // nothing after res.send(err) will execute
-                if (err)
-                    res.send(err);
+                if (err){
+                  res.send(err);
+                }
 
-                res.json(users); // return all users in JSON format
+                res.send(desks); // return all nerds in JSON format
             });
         });
 
         // route to handle creating goes here (app.post)
+        app.post('/api/desks', function(req, res){
+          console.log(req.body.title)
+          if(req.body.title == undefined || req.body.description == undefined){
+            res.send("blank")
+          }
+          else {
+            Desk.create(req.body, function(err, doc){
+              if(err){
+                res.send(err)
+              }
+              else {
+                res.send(doc)
+              }
+            })
+          }
+        })
         // route to handle delete goes here (app.delete)
 
         // frontend routes =========================================================
         // route to handle all angular requests
         app.get('/', function(req, res) {
-          res.sendFile('homepage.html', { root: path.join(__dirname, '../public/views') });         });
+            res.sendFile('homepage.html', {root: path.join(__dirname, '../public/views') })
+        });
 
     };
