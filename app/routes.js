@@ -2,6 +2,8 @@ var User = require('./models/user');
 
     module.exports = function(app) {
 
+      var path = require("path");
+
         // server routes ===========================================================
         // handle things like api calls
         // authentication routes
@@ -24,8 +26,7 @@ var User = require('./models/user');
 
         // frontend routes =========================================================
         // route to handle all angular requests
-        app.get('*', function(req, res) {
-            res.sendFile('./public/views/index.html'); // load our public/index.html file
-        });
+        app.get('/', function(req, res) {
+          res.sendFile('index.html', { root: path.join(__dirname, '../public/views') });         });
 
     };

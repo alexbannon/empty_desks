@@ -2,9 +2,10 @@ var express        = require('express');
 var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
+var path = require("path");
+
 
 // configuration ===========================================
-
 // config files
 var db = require('./config/db');
 
