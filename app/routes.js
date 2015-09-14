@@ -27,6 +27,6 @@ var User = require('./models/user');
         // frontend routes =========================================================
         // route to handle all angular requests
         app.get('/', function(req, res) {
-          res.sendFile('index.html', { root: path.join(__dirname, '../public/views') });         });
+          res.sendFile('homepage.html', { root: path.join(__dirname, '../public/views') });         });
 
     };
