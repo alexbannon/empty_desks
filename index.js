@@ -3,10 +3,18 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var path = require("path");
+var favicon = require('serve-favicon');
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
+//authentication
+
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+var session = require('express-session');
 
 
 // configuration ===========================================
@@ -27,6 +35,8 @@ mongoose.connect(db.url, function(err, db){
   }
 });
 
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
 // get all data/stuff of the body (POST) parameters
 // parse application/json
 app.use(bodyParser.json());
@@ -43,18 +53,53 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
 
+//hbs view engine
+app.set("view engine", "hbs");
+app.set('views', path.join(__dirname,'/public/views'));
+
+
+//authentication
+
+app.use(logger('combined'));
+app.use(cookieParser());
+app.use(session({secret: 'supernova', saveUninitialized: true, resave: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(function(req, res, next){
+  var err = req.session.error,
+      msg = req.session.notice,
+      success = req.session.success;
+
+  delete req.session.error;
+  delete req.session.success;
+  delete req.session.notice;
+
+  if (err) res.locals.error = err;
+  if (msg) res.locals.notice = msg;
+  if (success) res.locals.success = success;
+
+  next();
+});
+
 // routes ==================================================
-require('./app/routes')(app); // configure our routes
+var deskRoutes = require('./app/deskRoutes'); // configure our routes
+app.use("/", deskRoutes);
+
+
+// start app ===============================================
+// startup our app at http://localhost:8080
+app.listen(port);
+
+app.get("/", function(req, res){
+  res.render("homepage", {})
+});
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
-
-// start app ===============================================
-// startup our app at http://localhost:8080
-app.listen(port);
 
 // shoutout to the user
 console.log('Magic happens on port ' + port);

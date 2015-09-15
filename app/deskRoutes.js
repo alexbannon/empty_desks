@@ -1,14 +1,14 @@
+var express = require("express");
+var router = express.Router();
 var Desk = require('./models/desk');
 var path = require("path");
-
-    module.exports = function(app) {
 
         // server routes ===========================================================
         // handle things like api calls
         // authentication routes
 
         // sample api route
-        app.get('/api/desks', function(req, res) {
+        router.get('/api/desks', function(req, res) {
             // use mongoose to get all nerds in the database
             Desk.find(function(err, desks) {
 
@@ -22,22 +22,22 @@ var path = require("path");
             });
         });
 
-        app.get("/api/desks/:id", function(req, res){
+        router.get("/api/desks/:id", function(req, res){
           Desk.findOne({ "_id": req.params.id}, 'id title description', function(err, desk){
             if (err) return handleError(err);
             res.send(desk)
           })
         });
 
-        app.put("/api/desks/:id", function(req, res){
+        router.put("/api/desks/:id", function(req, res){
           Desk.findOneAndUpdate({ "_id": req.params.id}, req.body, { 'new': true }, function(err, desk){
             if (err) return handleError(err);
             res.send(desk);
           })
         })
 
-        // route to handle creating goes here (app.post)
-        app.post('/api/desks', function(req, res){
+        // route to handle creating goes here (router.post)
+        router.post('/api/desks', function(req, res){
           console.log(req.body.title)
           if(req.body.title == undefined || req.body.description == undefined){
             res.send("blank")
@@ -54,7 +54,7 @@ var path = require("path");
           }
         })
 
-        app.delete("/api/desks/:id", function(req, res){
+        router.delete("/api/desks/:id", function(req, res){
           Desk.findOneAndRemove({ "_id": req.params.id}, function(err, doc){
             res.json({success: true});
           })
@@ -62,8 +62,5 @@ var path = require("path");
 
         // frontend routes =========================================================
         // route to handle all angular requests
-        app.get('/', function(req, res) {
-            res.sendFile('homepage.html', {root: path.join(__dirname, '../public/views') })
-        });
 
-    };
+module.exports = router;
