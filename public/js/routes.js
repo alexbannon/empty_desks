@@ -5,15 +5,10 @@
     function($routeProvider){
       $routeProvider.
       when("/desks", {
-        templateUrl: '../views/desks/index.html',
+        templateUrl: 'views/desks/index.html',
         controller: 'desksController',
         controllerAs: 'deskCtrl'
-      }).
-      otherwise({
-        redirectTo: "/desks"
       })
     }
   ])
-
-
 })();

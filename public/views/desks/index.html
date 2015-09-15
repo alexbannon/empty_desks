@@ -1,1 +1,8 @@
-<h1>Desks</h1>
+<div>
+  <a ng-href="/#/desks/new"><button>New Desk</button></a>
+  <div class="desks" ng-repeat="desk in deskCtrl.desks">
+    <div class="desk">
+      {{desk.title}}
+    </div>
+  </div>
+</div>

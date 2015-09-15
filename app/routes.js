@@ -22,6 +22,20 @@ var path = require("path");
             });
         });
 
+        app.get("/api/desks/:id", function(req, res){
+          Desk.findOne({ "_id": req.params.id}, 'id title description', function(err, desk){
+            if (err) return handleError(err);
+            res.send(desk)
+          })
+        });
+
+        app.put("/api/desks/:id", function(req, res){
+          Desk.findOneAndUpdate({ "_id": req.params.id}, req.body, { 'new': true }, function(err, desk){
+            if (err) return handleError(err);
+            res.send(desk);
+          })
+        })
+
         // route to handle creating goes here (app.post)
         app.post('/api/desks', function(req, res){
           console.log(req.body.title)
@@ -29,17 +43,22 @@ var path = require("path");
             res.send("blank")
           }
           else {
-            Desk.create(req.body, function(err, doc){
+            Desk.create(req.body, function(err, desk){
               if(err){
                 res.send(err)
               }
               else {
-                res.send(doc)
+                res.send(desk)
               }
             })
           }
         })
-        // route to handle delete goes here (app.delete)
+
+        app.delete("/api/desks/:id", function(req, res){
+          Desk.findOneAndRemove({ "_id": req.params.id}, function(err, doc){
+            res.json({success: true});
+          })
+        })
 
         // frontend routes =========================================================
         // route to handle all angular requests
