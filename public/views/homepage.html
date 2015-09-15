@@ -16,7 +16,36 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <h1><a ng-href="/">Empty Desks</a></h1>
+  <div id="nav_bar">
+    <div class="column-4">
+      <div id="left_container">
+        <div id="user_box">
+          <div id="user_image">A</div>
+          <div id="user_name">Alexander B</div>
+        </div>
+        <div id="new_desk_button">
+          <a class="link" href="/#/desks/new">+</a>
+        </div>
+      </div>
+    </div>
+    <div class="column-4">
+      <div id="logo_container">
+        <a ng-href="/"><img id="logo" src="../images/logo_empty_desks.png" alt="Empty Desks" /></a>
+      </div>
+    </div>
+    <div class="column-4">
+      <div class="flexsearch">
+    		<div class="flexsearch--wrapper">
+    			<form class="flexsearch--form" action="#" method="post">
+    				<div class="flexsearch--input-wrapper">
+    					<input class="flexsearch--input" type="search" placeholder="search">
+    				</div>
+    				<input class="flexsearch--submit" type="submit" value="&#10140;"/>
+    			</form>
+    		</div>
+      </div>
+    </div>
+  </div>
   <div ng-view></div>
 </body>
 </html>
