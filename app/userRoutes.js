@@ -1,0 +1,34 @@
+var express = require("express");
+var router = express.Router();
+var User = require('./models/user');
+var path = require("path");
+
+router.get('/api/users', function(req, res) {
+    User.find(function(err, users) {
+      if (err){
+        res.send(err);
+      }
+      res.send(users);
+    });
+});
+
+//current_user allows angular to get user ID
+
+router.get('/api/confirm/current_user', function (req, res) {
+  if(req.user){
+    res.send(req.user._id)
+  }
+  else {
+    res.send("error")
+  }
+})
+
+
+router.get("/api/users/:id", function(req, res){
+  User.findOne({ "_id": req.params.id}, 'username', function(err, user){
+    if (err) return handleError(err);
+    res.send(user)
+  })
+});
+
+module.exports = router;

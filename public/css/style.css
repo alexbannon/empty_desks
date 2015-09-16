@@ -1,6 +1,10 @@
 * {
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 body {
   background-color: rgb(240, 240, 240);
   margin: 0;
@@ -38,6 +42,7 @@ body {
   border-radius: 4px;
   background-color: rgb(30, 122, 191);
   font-size: 1.6em;
+  cursor: pointer;
 }
 #user_name {
   border: 1px solid black;
@@ -47,6 +52,7 @@ body {
   border-radius: 4px;
   font-size: 1.6em;
   background-color: rgb(30, 122, 191);
+  cursor: pointer;
 }
 #new_desk_button {
   border: 1px solid black;
@@ -62,6 +68,50 @@ body {
   color: black;
 }
 
+#user_dropdown {
+  position: absolute;
+  display: none;
+  top: 31px;
+  border: 1px solid black;
+  left: 0;
+  width: 10.6em;
+  background-color: rgb(30, 122, 191);
+  color: white;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.dropdown {
+  display: inline-block;
+  list-style: none;
+}
+
+.dropdown_option {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  margin: 4px 0 0 0;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.dropdown_option:hover {
+  background-color: rgb(30, 70, 150);
+  -webkit-transiton: background-color 0.4s;
+  -moz-transition: background-color 0.4s;
+  -ms-transition: background-color 0.4s;
+  -o-transition: background-color 0.4s;
+  -transition: background-color 0.4s;
+}
+
+
+/**Search Bar**/
 
 @import "compass/css3";
 
@@ -134,15 +184,15 @@ body {
 
 .flexsearch--input:focus {
   outline: none;
-  border-color: #333;
+  border-color: rgb(20, 102, 171);
 }
 
 .flexsearch--input:focus.flexsearch--submit {
- 	color: #333;
+  color: rgb(20, 102, 171);
 }
 
 .flexsearch--submit:hover {
-  color: #333;
+  color: rgb(50, 50, 50);
   cursor: pointer;
 }
 

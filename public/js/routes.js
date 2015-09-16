@@ -8,6 +8,16 @@
         templateUrl: 'views/desks/index.html',
         controller: 'desksController',
         controllerAs: 'deskCtrl'
+      }).
+      when("/", {
+        templateUrl: 'views/home/userHomepage.html',
+        controller: 'homeController',
+        controllerAs: 'homeCtrl'
+      }).
+      when("/desks/new", {
+        templateUrl: "views/desks/new.html",
+        controller: 'newDeskController',
+        controllerAs: 'newDeskCtrl'
       })
     }
   ])

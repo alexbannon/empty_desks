@@ -15,6 +15,7 @@ var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var session = require('express-session');
+var funct = require('./config/auth_functions');
 
 
 // configuration ===========================================
@@ -25,13 +26,12 @@ var db = require('./config/db');
 var port = process.env.PORT || 8080;
 
 // connect to our mongoDB database
-// (uncomment after you enter in your own credentials in config/db.js)
-mongoose.connect(db.url, function(err, db){
+mongoose.connect(db.url, function(err, result){
   if (err){
     console.log("error connecting to mongo. Error: ", err);
   }
   else {
-    console.log("connection established to ", db);
+    console.log("connection established to ", db.url);
   }
 });
 
@@ -85,6 +85,67 @@ app.use(function(req, res, next){
 // routes ==================================================
 var deskRoutes = require('./app/deskRoutes'); // configure our routes
 app.use("/", deskRoutes);
+var userRoutes = require('./app/userRoutes');
+app.use("/", userRoutes);
+
+
+passport.serializeUser(function(user, done) {
+  console.log("serializing " + user.username);
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  console.log("deserializing " + obj);
+  done(null, obj);
+});
+
+passport.use('local-signin', new LocalStrategy(
+  {passReqToCallback : true}, //allows us to pass back the request to the callback
+  function(req, username, password, done) {
+    funct.localAuth(username, password)
+    .then(function (user) {
+      if (user) {
+        console.log("LOGGED IN AS: " + user.username);
+        req.session.success = 'You are successfully logged in ' + user.username + '!';
+        done(null, user);
+      }
+      if (!user) {
+        console.log("COULD NOT LOG IN");
+        req.session.error = 'Could not log user in. Please try again.'; //inform user could not log them in
+        done(null, user);
+      }
+    })
+    .fail(function (err){
+      console.log(err.body);
+    });
+  }
+));
+
+passport.use('local-signup', new LocalStrategy(
+  {passReqToCallback : true}, //allows us to pass back the request to the callback
+  function(req, username, password, done) {
+    // for(var property in req){
+    //   console.log(req[property])
+    // }
+    funct.localReg(username, req.body.email, password)
+    .then(function (user) {
+      if (user) {
+        console.log("REGISTERED: " + user.username);
+        req.session.success = 'You are successfully registered and logged in ' + user.username + '!';
+        done(null, user);
+      }
+      if (!user) {
+        console.log("COULD NOT REGISTER");
+        req.session.error = 'That username is already in use, please try a different one.'; //inform user could not log them in
+        done(null, user);
+      }
+    })
+    .fail(function (err){
+      console.log(err.body);
+    });
+  }
+));
+
 
 
 // start app ===============================================
@@ -92,7 +153,31 @@ app.use("/", deskRoutes);
 app.listen(port);
 
 app.get("/", function(req, res){
-  res.render("homepage", {})
+  res.render("homepage", {user: req.user})
+});
+
+app.get('/signin', function(req, res){
+  res.render('signin');
+});
+
+app.post('/local-reg', passport.authenticate('local-signup', {
+  successRedirect: '/#/',
+  failureRedirect: '/signin'
+  })
+);
+
+app.post('/login', passport.authenticate('local-signin', {
+  successRedirect: '/#/',
+  failureRedirect: '/signin'
+  })
+);
+
+app.get('/logout', function(req, res){
+  var name = req.user.username;
+  console.log("LOGGIN OUT " + req.user.username)
+  req.logout();
+  res.redirect('/#/');
+  req.session.notice = "You have successfully been logged out " + name + "!";
 });
 
 app.use(function(req, res, next) {

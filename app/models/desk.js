@@ -4,7 +4,9 @@ var mongoose = require('mongoose');
 // module.exports allows us to pass this to other files when it is called
 var deskSchema = new mongoose.Schema({
   title: String,
-  description: String
+  description: String,
+  lists: Array,
+  users: Array
 })
 
 module.exports = mongoose.model('Desk', deskSchema);

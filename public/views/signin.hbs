@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Empty Desks</title>
+</head>
+<body>
+  <h1>Sign In</h1>
+  <form id="local-sign-in" action="/login" method="post">
+    <div>
+        <p></p>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Log In"/>
+    </div>
+  </form>
+  <h1>Sign Up</h1>
+  <form id="local-reg" action="/local-reg" method="post">
+    <div>
+        <p></p>
+        <label>New Username:</label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <p></p>
+        <label>New Email:</label>
+        <input type="text" name="email"/>
+    </div>
+
+    <div>
+        <label>New Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Register"/>
+    </div>
+  </form>
+</body>
+</html>

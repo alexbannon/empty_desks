@@ -6,6 +6,8 @@
     'ngResource',
     'deskControllers',
     'deskRouter',
-    'deskServices'
+    'deskServices',
+    'userServices',
+    'ngCookies'
   ]);
 })()

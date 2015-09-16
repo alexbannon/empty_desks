@@ -3,8 +3,11 @@ var mongoose = require('mongoose');
 
 // define our user model
 // module.exports allows us to pass this to other files when it is called
-module.exports = mongoose.model('User', {
-    username : {type : String, default: ''},
-    email: {type : String, default: ''},
-    password_digest: {type : String, default: ''}
-});
+var userSchema = new mongoose.Schema({
+  username: String,
+  email: String,
+  password_digest: String,
+  avatar_url: String
+})
+
+module.exports = mongoose.model('User', userSchema);
