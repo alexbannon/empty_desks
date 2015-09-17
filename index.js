@@ -25,6 +25,17 @@ Handlebars.registerHelper('firstLetter', function(passedString) {
   return new Handlebars.SafeString(output)
 });
 
+Handlebars.registerHelper('maxSize', function(passedString){
+  if(passedString.length > 12){
+    var output = passedString.substring(0,12);
+    output = output + "...";
+  }
+  else {
+    var output = passedString;
+  }
+  return new Handlebars.SafeString(output)
+})
+
 
 
 // configuration ===========================================
@@ -166,7 +177,12 @@ app.get("/", function(req, res){
 });
 
 app.get('/signin', function(req, res){
-  res.render('signin');
+  if(req.user){
+    res.redirect("/")
+  }
+  else{
+    res.render('signin');
+  }
 });
 
 app.post('/local-reg', passport.authenticate('local-signup', {

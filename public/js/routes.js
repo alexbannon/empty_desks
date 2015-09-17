@@ -23,6 +23,11 @@
         templateUrl: "views/desks/show.html",
         controller: 'showDeskController',
         controllerAs: 'showDeskCtrl'
+      }).
+      when("/calendar", {
+        templateUrl: "views/desks/calendar.html",
+        controller: 'deskCalendarController',
+        controllerAs: 'calCtrl'
       })
     }
   ])

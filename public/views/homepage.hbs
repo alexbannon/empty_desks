@@ -36,9 +36,9 @@
               {{/if}}
             {{/if}}
             {{#if user.firstName}}
-              <div id="user_name">{{user.firstName}}</div>
+              <div id="user_name">{{maxSize user.firstName}}</div>
             {{else}}
-              <div id="user_name">{{user.username}}</div>
+              <div id="user_name">{{maxSize user.username}}</div>
             {{/if}}
           </div>
           <div id="new_desk_button">

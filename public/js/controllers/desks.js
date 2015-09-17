@@ -6,7 +6,7 @@
     this.desks = Desk.query();
   }]);
 
-  deskControllers.controller('newDeskController', ['Desk', 'AuthService', function(Desk, AuthService){
+  deskControllers.controller('newDeskController', ['Desk', 'AuthService', '$location', function(Desk, AuthService, $location){
     var self = this;
     this.newDesk = {};
     AuthService.current_user().then(function(response){
@@ -14,18 +14,53 @@
     })
     this.createDesk = function(){
       Desk.save(this.newDesk, function(desk){
-        console.log(desk)
+        $location.path("/")
       })
     }
   }])
 
   deskControllers.controller('showDeskController', ['Desk', '$routeParams', function(Desk, $routeParams){
-    this.desk = Desk.get({id: $routeParams.id});
+    var self = this;
+    this.desk = Desk.get({id: $routeParams.id}, function(desk){
+      self.desk.lists = desk.lists
+    });
+    this.newListTitle = "";
+    console.log("showing desk")
     console.log(this.desk)
+    console.log(this.desk.lists)
+    this.newList = function(){
+      console.log(this.desk.lists)
+      console.log(self.newListTitle)
+      if(self.newListTitle == "" || !self.newListTitle){
+        return
+      }
+      else {
+        var obj = {}
+        obj["listName"] = self.newListTitle;
+        obj["items"] = ["First Item"];
+        this.desk.lists.push(obj)
+        console.log(this.desk.lists)
+        this.desk.$update({id: self.desk._id})
+      }
+    }
+    // this.newList = function(){
+    //   if(self.desks.lists){
+    //     console.log(self.desks.lists)
+    //   }
+    //   else {
+    //     self.desks.lists = [{this.newListTitle: []}]
+    //   }
+    //   this.desk.$addToDesk({id: this.desk._id})
+    // }
   }])
 
   deskControllers.controller('homeController', ['Desk', function(Desk){
     this.desks = Desk.query();
   }])
+
+  deskControllers.controller('deskCalendarController', ['Desk', function(Desk){
+    this.desks = Desk.query();
+  }])
+
 
 })();

@@ -1,5 +1,4 @@
 (function() {
-  console.log("user controller initiated")
   var userControllers = angular.module('userControllers', ['ngRoute'])
 
   userControllers.controller('editUserController', ['User', 'AuthService', function(User, AuthService) {

@@ -43,7 +43,7 @@ exports.localReg = function (username, firstName, lastName, email, avatar_url, p
 exports.localAuth = function (username, password) {
   var deferred = Q.defer();
 
-  User.findOne({ "username": username}, 'username email password_digest avatar_url', function(err, user){
+  User.findOne({ "username": username}, function(err, user){
     if (user == null) {
       console.log("COULD NOT FIND USER IN DB FOR SIGNIN");
       deferred.resolve(false);
