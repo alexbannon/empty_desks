@@ -1,9 +1,13 @@
-<h1>Desks</h1>
-<div>
-  <div class="desks" ng-repeat="desk in homeCtrl.desks">
-    <div class="desk">
-      <a ng-href="/#/desk/{{desk._id}}">{{desk.title}}</a>
-    </div>
+<h1 class="desk_header">Desks</h1>
+<div class='allDesks'>
+  <div class="desk" ng-repeat="desk in homeCtrl.desks | limitTo:4">
+    <a ng-href="/#/desk/{{desk._id}}">
+      <div class="desk_container">
+        <div class="desk_title">{{desk.title}}</div>
+        <div class="desk_description">{{desk.description}}</div>
+      </div>
+    </a>
   </div>
 </div>
-<h1>Calendar</h1>
+<div class="show_more"><a href="/#/desks"><div>View All</div></a></div>
+<h1 class="calendar_header">Calendar</h1>

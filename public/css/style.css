@@ -29,6 +29,8 @@ body {
 
 #logo {
   height: 4.5em;
+  position: relative;
+  left: 1%;
 }
 
 #left_container {
@@ -125,6 +127,49 @@ body {
   -transition: background-color 0.4s;
 }
 
+/**DESK LAYOUT**/
+.allDesks {
+  margin: 0 auto;
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  justify-content: center;
+}
+.desk {
+  display: inline-block;
+  width: 300px;
+  height: 120px;
+  margin: 0 20px;
+  text-align: center;
+  border: 1px solid rgb(20, 82, 151);
+  border-bottom: 2px solid rgb(20, 82, 151);
+  border-right: 2px solid rgb(20, 82, 151);
+  border-radius: 4px;
+  background-color: rgb(30, 160, 220);
+}
+.desk:hover {
+  background-color: rgb(30, 140, 200);
+  border: 2px solid rgb(20, 82, 151);
+}
+.desk_container {
+  height: 120px;
+}
+
+.show_more{
+  border: 1px solid black;
+  background-color: white;
+  text-align: center;
+  margin: 15px 40% 5px 40%;
+  min-width: 120px;
+  border-radius: 10px;
+}
+.show_more:hover{
+  background-color: rgb(30, 140, 200);
+  border: 1px solid white;
+  color: white;
+}
+
 
 /**Search Bar**/
 
@@ -156,6 +201,7 @@ body {
 .flexsearch--input {
   width: 100%;
 }
+
 
 /***********************
  * Configurable Styles *

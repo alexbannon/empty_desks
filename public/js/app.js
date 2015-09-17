@@ -10,6 +10,7 @@
     'userControllers',
     'deskRouter',
     'userRouter',
-    'ngCookies'
+    'ngCookies',
+    'deskDirectives'
   ]);
 })()
