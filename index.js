@@ -17,6 +17,15 @@ var LocalStrategy = require('passport-local');
 var session = require('express-session');
 var funct = require('./config/auth_functions');
 
+//hbs custom helper
+
+var Handlebars = require('hbs');
+Handlebars.registerHelper('firstLetter', function(passedString) {
+  var output = passedString.substring(0,1);
+  return new Handlebars.SafeString(output)
+});
+
+
 
 // configuration ===========================================
 // config files
@@ -127,7 +136,7 @@ passport.use('local-signup', new LocalStrategy(
     // for(var property in req){
     //   console.log(req[property])
     // }
-    funct.localReg(username, req.body.email, password)
+    funct.localReg(username, req.body.firstName, req.body.lastName, req.body.email, req.body.avatar_url, password)
     .then(function (user) {
       if (user) {
         console.log("REGISTERED: " + user.username);

@@ -6,14 +6,16 @@ var User = require('../app/models/user');
     // db = require('orchestrate')(config.db); //config.db holds Orchestrate token
 
 //used in local-signup strategy
-exports.localReg = function (username, email, password) {
+exports.localReg = function (username, firstName, lastName, email, avatar_url, password) {
   var deferred = Q.defer();
   var hash = bcrypt.hashSync(password, 8);
   var user = {
     "username": username,
+    "firstName": firstName,
+    "lastName": lastName,
     "email": email,
-    "password_digest": hash,
-    "avatar": ""
+    "avatar_url": avatar_url,
+    "password_digest": hash
   }
   //check if username is already assigned in our database
   User.findOne({ "username": user.username}, 'id username password_digest', function(err, found_user){

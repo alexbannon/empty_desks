@@ -16,7 +16,7 @@ router.get('/api/users', function(req, res) {
 
 router.get('/api/confirm/current_user', function (req, res) {
   if(req.user){
-    res.send(req.user._id)
+    res.send(req.user)
   }
   else {
     res.send("error")
@@ -30,5 +30,22 @@ router.get("/api/users/:id", function(req, res){
     res.send(user)
   })
 });
+
+router.put("/api/users/:id", function(req, res){
+  if(req.user._id == req.params.id){
+    User.findOneAndUpdate({ "_id": req.params.id}, req.body, { 'new': true}, function(err, user){
+      if (err) return handleError(err);
+      res.send(user)
+    })
+  }
+  else {
+    res.send("not authorized")
+  }
+  Desk.findOneAndUpdate({ "_id": req.params.id}, req.body, { 'new': true }, function(err, desk){
+    if (err) return handleError(err);
+    res.send(desk);
+  })
+})
+
 
 module.exports = router;

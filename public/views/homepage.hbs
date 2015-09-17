@@ -10,10 +10,12 @@
   <script src="../libs/angular-cookies/angular-cookies.min.js"></script>
 
   <script src="../js/app.js"></script>
-  <script src="../js/routes.js"></script>
   <script src="../js/controllers/desks.js"></script>
+  <script src="../js/controllers/users.js"></script>
   <script src="../js/services/desk.js"></script>
-  <script src="../js/services/userAuth.js"></script>
+  <script src="../js/services/user.js"></script>
+  <script src="../js/routes.js"></script>
+  <script src="../js/userRoutes.js"></script>
   <script src="../js/jquery.js"></script>
 
   <link rel="stylesheet" href="../css/style.css">
@@ -25,21 +27,29 @@
         {{#if user}}
           <div id="user_box">
             {{#if user.avatar_url}}
-              <div id="user_image"><img src="{{user.avatar_url}}"></div>
+              <div id="user_image"><img class="avatar" src="{{user.avatar_url}}"></div>
             {{else}}
-              <div id="user_image">A</div>
+              {{#if user.firstName}}
+                <div id="user_letter">{{firstLetter user.firstName}}</div>
+              {{else}}
+                <div id="user_letter">{{firstLetter user.username}}</div>
+              {{/if}}
             {{/if}}
-            <div id="user_name">{{user.username}}</div>
+            {{#if user.firstName}}
+              <div id="user_name">{{user.firstName}}</div>
+            {{else}}
+              <div id="user_name">{{user.username}}</div>
+            {{/if}}
           </div>
           <div id="new_desk_button">
             <a class="link" href="/#/desks/new">+</a>
           </div>
           <div id="user_dropdown">
-            <div class="dropdown_option"><a href="/#/">Home</a></div>
-            <div class="dropdown_option">Profile</div>
-            <div class="dropdown_option"><a href="/#/desks">Desks</a></div>
-            <div class="dropdown_option"><a href="/#/calendar">Calendar</a></div>
-            <div class="dropdown_option"><a href="/logout">Sign Out</a></div>
+            <div class="dropdown_option"><a class = "dropdown_link" href="/#/">Home</a></div>
+            <div class="dropdown_option"><a class= "dropdown_link" href="/#/profile">Profile</a></div>
+            <div class="dropdown_option"><a class="dropdown_link" href="/#/desks">Desks</a></div>
+            <div class="dropdown_option"><a class="dropdown_link" href="/#/calendar">Calendar</a></div>
+            <div class="dropdown_option"><a class="dropdown_link" href="/logout">Sign Out</a></div>
           </div>
         {{else}}
           <div id="user_box">

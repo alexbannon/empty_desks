@@ -5,9 +5,11 @@
     'ngRoute',
     'ngResource',
     'deskControllers',
-    'deskRouter',
     'deskServices',
     'userServices',
+    'userControllers',
+    'deskRouter',
+    'userRouter',
     'ngCookies'
   ]);
 })()

@@ -11,4 +11,11 @@
       }
     }
   }])
+
+  userServices.factory('User', ['$resource', function($resource) {
+    return $resource('/api/users/:id', {}, {
+      update: {method:'PUT'}
+    });
+  }]);
+  
 })();

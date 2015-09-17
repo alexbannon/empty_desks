@@ -10,7 +10,7 @@
     var self = this;
     this.newDesk = {};
     AuthService.current_user().then(function(response){
-      self.newDesk.users = [response.data]
+      self.newDesk.users = [response.data._id]
     })
     this.createDesk = function(){
       Desk.save(this.newDesk, function(desk){
@@ -27,6 +27,5 @@
   deskControllers.controller('homeController', ['Desk', function(Desk){
     this.desks = Desk.query();
   }])
-
 
 })();
