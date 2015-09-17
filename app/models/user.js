@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 // module.exports allows us to pass this to other files when it is called
 var userSchema = new mongoose.Schema({
   username: String,
+  firstName: String,
+  lastName: String,
   email: String,
   password_digest: String,
   avatar_url: String

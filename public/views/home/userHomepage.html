@@ -1,9 +1,9 @@
-<h1>Hello World</h1>
-
+<h1>Desks</h1>
 <div>
   <div class="desks" ng-repeat="desk in homeCtrl.desks">
     <div class="desk">
-      {{desk.title}}
+      <a ng-href="/#/desk/{{desk._id}}">{{desk.title}}</a>
     </div>
   </div>
 </div>
+<h1>Calendar</h1>

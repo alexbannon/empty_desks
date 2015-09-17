@@ -19,14 +19,17 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  {{user._id}}
   <div id="nav_bar">
     <div class="column-4">
       <div id="left_container">
         {{#if user}}
           <div id="user_box">
-            <div id="user_image">A</div>
-            <div id="user_name">Alexander B</div>
+            {{#if user.avatar_url}}
+              <div id="user_image"><img src="{{user.avatar_url}}"></div>
+            {{else}}
+              <div id="user_image">A</div>
+            {{/if}}
+            <div id="user_name">{{user.username}}</div>
           </div>
           <div id="new_desk_button">
             <a class="link" href="/#/desks/new">+</a>

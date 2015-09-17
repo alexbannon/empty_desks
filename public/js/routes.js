@@ -18,6 +18,11 @@
         templateUrl: "views/desks/new.html",
         controller: 'newDeskController',
         controllerAs: 'newDeskCtrl'
+      }).
+      when("/desk/:id", {
+        templateUrl: "views/desks/show.html",
+        controller: 'showDeskController',
+        controllerAs: 'showDeskCtrl'
       })
     }
   ])

@@ -7,18 +7,21 @@
   }]);
 
   deskControllers.controller('newDeskController', ['Desk', 'AuthService', function(Desk, AuthService){
-    this.newDesk;
-    AuthService.current_user();
-    AuthService.$scope.current_user
-    this.current_user = AuthService.current_user;
+    var self = this;
+    this.newDesk = {};
+    AuthService.current_user().then(function(response){
+      self.newDesk.users = [response.data]
+    })
     this.createDesk = function(){
-      var object = $cookies.getAll();
-      for(key in object){
-        console.log(object[key])
-      }
-      Desk.save()
-      console.log("created desk");
+      Desk.save(this.newDesk, function(desk){
+        console.log(desk)
+      })
     }
+  }])
+
+  deskControllers.controller('showDeskController', ['Desk', '$routeParams', function(Desk, $routeParams){
+    this.desk = Desk.get({id: $routeParams.id});
+    console.log(this.desk)
   }])
 
   deskControllers.controller('homeController', ['Desk', function(Desk){

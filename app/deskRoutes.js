@@ -9,8 +9,9 @@ var path = require("path");
 
         // sample api route
         router.get('/api/desks', function(req, res) {
-            // use mongoose to get all nerds in the database
-            Desk.find(function(err, desks) {
+          if(req.user){
+            Desk.find({ "users": req.user._id}, function(err, desks) {
+              console.log(desks)
 
                 // if there is an error retrieving, send the error.
                                 // nothing after res.send(err) will execute
@@ -18,13 +19,19 @@ var path = require("path");
                   res.send(err);
                 }
 
-                res.send(desks); // return all nerds in JSON format
+                res.send(desks); // return all desks in JSON format
             });
+          }
+          else {
+            res.send({});
+          }
+            // use mongoose to get all desks in the database
         });
 
         router.get("/api/desks/:id", function(req, res){
-          Desk.findOne({ "_id": req.params.id}, 'id title description', function(err, desk){
+          Desk.findOne({ "_id": req.params.id}, function(err, desk){
             if (err) return handleError(err);
+            console.log(desk)
             res.send(desk)
           })
         });

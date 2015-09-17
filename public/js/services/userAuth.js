@@ -4,10 +4,9 @@
   userServices.factory( 'AuthService', [ '$http', function($http) {
     return {
       current_user: function(){
-        var request = $http.get("/api/confirm/current_user")
-        .success(function(userId) {
-          $scope.current_user = userId;
-          return userId
+        return $http.get("/api/confirm/current_user")
+        .success(function(response){
+          return response
         })
       }
     }
