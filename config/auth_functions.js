@@ -18,6 +18,7 @@ exports.localReg = function (username, firstName, lastName, email, avatar_url, p
     "avatar_url": avatar_url,
     "password_digest": hash
   }
+  console.log(user)
   //check if username is already assigned in our database
   User.findOne({ "username": user.username}, 'id username password_digest', function(err, found_user){
     if (found_user != null) {
@@ -26,9 +27,11 @@ exports.localReg = function (username, firstName, lastName, email, avatar_url, p
     else {
       User.create(user, function(err, created_user){
         if(err){
+          console.log("error was here")
           deferred.reject(new Error(err));
         }
         else {
+          console.log(created_user)
           deferred.resolve(created_user);
         }
       })
