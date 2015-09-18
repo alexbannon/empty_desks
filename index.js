@@ -173,6 +173,7 @@ passport.use('local-signup', new LocalStrategy(
 app.listen(port);
 
 app.get("/", function(req, res){
+  console.log("rendering homepage as I should")
   res.render("homepage", {user: req.user})
 });
 
