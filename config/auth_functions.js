@@ -28,6 +28,9 @@ exports.localReg = function (username, firstName, lastName, email, avatar_url, p
       User.create(user, function(err, created_user){
         if(err){
           console.log("error was here")
+          var temp = new Error(err)
+          console.log(temp)
+          console.log(err)
           deferred.reject(new Error(err));
         }
         else {
