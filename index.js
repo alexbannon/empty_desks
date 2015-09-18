@@ -43,7 +43,7 @@ Handlebars.registerHelper('maxSize', function(passedString){
 var db = require('./config/db');
 
 // set our port
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 80;
 
 // connect to our mongoDB database
 mongoose.connect(db.url, function(err, result){
