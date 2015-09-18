@@ -7,6 +7,7 @@ var User = require('../app/models/user');
 
 //used in local-signup strategy
 exports.localReg = function (username, firstName, lastName, email, avatar_url, password) {
+  console.log("got here")
   var deferred = Q.defer();
   var hash = bcrypt.hashSync(password, 8);
   var user = {
