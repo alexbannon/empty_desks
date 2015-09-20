@@ -1,26 +1,28 @@
-<h1>Show Desk</h1>
-<h3>{{showDeskCtrl.desk.title}}</h3>
-<h4>{{showDeskCtrl.desk.description}}</h4>
+<div class="show_desk_body">
+  <h1 class="show_desk_title">{{showDeskCtrl.desk.title}}</h1>
+  <div class="show_board_menu">< Show Menu</div>
+  <h4 class="show_desk_description">{{showDeskCtrl.desk.description}}</h4>
 
-<h1>Lists</h1>
-<div class="lists">
-  <div ng-repeat="list in showDeskCtrl.desk.lists">
-    <div class="list">
-      {{list.listName}}
-      <div class="items" ng-repeat="listItem in list.items">
-        <div class="item">
-          <ul>
-            <li>{{listItem}}</li>
-          </ul>
+  <h1>Lists</h1>
+  <div class="lists">
+    <div ng-repeat="list in showDeskCtrl.desk.lists">
+      <div class="list">
+        {{list.listName}}
+        <div class="items" ng-repeat="listItem in list.items">
+          <div class="item">
+            <ul>
+              <li>{{listItem}}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+    <h1>Add a List</h1>
+    <form ng-submit="showDeskCtrl.newList()">
+      <label ng-model="showDeskCtrl.newListTitle">Title</label>
+      <input type="text" ng-model="showDeskCtrl.newListTitle">
+      <input type="submit" value="Create List">
+    </form>
   </div>
-  <h1>Add a List</h1>
-  <form ng-submit="showDeskCtrl.newList()">
-    <label ng-model="showDeskCtrl.newListTitle">Title</label>
-    <input type="text" ng-model="showDeskCtrl.newListTitle">
-    <input type="submit" value="Create List">
-  </form>
+  <h1>{{showDeskCtrl.newListTitle}}</h1>
 </div>
-<h1>{{showDeskCtrl.newListTitle}}</h1>
