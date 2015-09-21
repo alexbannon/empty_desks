@@ -14,7 +14,7 @@
     })
     this.createDesk = function(){
       Desk.save(this.newDesk, function(desk){
-        $location.path("/")
+        $location.path("/desk/"+desk._id)
       })
     }
   }])
@@ -25,21 +25,15 @@
       self.desk.lists = desk.lists
     });
     this.newListTitle = "";
-    console.log("showing desk")
-    console.log(this.desk)
-    console.log(this.desk.lists)
     this.newList = function(){
-      console.log(this.desk.lists)
-      console.log(self.newListTitle)
-      if(self.newListTitle == "" || !self.newListTitle){
+=      if(self.newListTitle == "" || !self.newListTitle){
         return
       }
       else {
         var obj = {}
         obj["listName"] = self.newListTitle;
-        obj["items"] = ["First Item"];
+        obj["items"] = [];
         this.desk.lists.push(obj)
-        console.log(this.desk.lists)
         this.desk.$update({id: self.desk._id})
       }
     }

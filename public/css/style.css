@@ -208,6 +208,16 @@ body {
   display: block;
 }
 
+.desk_title {
+  font-family: 'Lora', serif;
+  font-size: 1.5em;
+}
+.desk_description {
+  font-family: 'Lora', serif;
+  margin-top: 10px;
+
+}
+
 .show_board_menu {
   float: right;
   margin: 20px 10px 0 0;
@@ -220,6 +230,39 @@ body {
   border-radius: 5px;
 }
 
+#sidebar {
+  position: fixed;
+  height: 100%;
+  right: 0;
+  top: 80px;
+  width: 260px;
+  border: 1px solid black;
+  background: white;
+}
+
+.menu_title {
+  text-align: center;
+}
+.hoz_line {
+  border-top: 1px solid black;
+  text-align: center;
+  margin: 0 auto;
+  width: 90%;
+}
+.exit_menu {
+  position: fixed;
+  right: 5px;
+  top: 102px;
+  color: rgb(110, 110, 110);
+}
+.exit_menu:hover {
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+}
+
+.margin-top {
+  height: 50px;
+}
 
 /**Search Bar**/
 
@@ -295,7 +338,7 @@ body {
 
 .flexsearch--input:focus {
   outline: none;
-  border-color: rgb(20, 40, 100);
+  border-color: rgb(0, 0, 0);
 }
 
 .flexsearch--input:focus.flexsearch--submit {

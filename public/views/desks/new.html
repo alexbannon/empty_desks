@@ -1,3 +1,4 @@
+<h1 class="desk_header">Add a Desk</h1>
 <form ng-submit="newDeskCtrl.createDesk()">
   <label name="title">Title</label>
   <input type="text" ng-model="newDeskCtrl.newDesk.title">
@@ -7,6 +8,21 @@
   <input type="submit" value="Create">
 </form>
 
-<h1>{{newDeskCtrl.newDesk.title}}</h1>
-<h1>{{newDeskCtrl.newDesk.description}}</h1>
+<div class="margin-top"></div>
+<div class='allDesks'>
+  <div class="desk">
+    <div class="desk_container" ng-click="newDeskCtrl.createDesk()">
+      <div class="desk_title">
+        <span ng-show="!newDeskCtrl.newDesk.title">New Title</span>
+        {{newDeskCtrl.newDesk.title}}
+      </div>
+      <div class="hoz_line"></div>
+      <div class="desk_description">
+        <span ng-show="!newDeskCtrl.newDesk.description">New Description</span>
+        {{newDeskCtrl.newDesk.description}}
+      </div>
+    </div>
+  </div>
+</div>
+
 <h1>{{newDeskCtrl.newDesk.users}}</h1>
