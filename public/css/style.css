@@ -78,6 +78,25 @@ body {
   margin: 0 0 0 .5em;
 }
 
+.edit_option {
+  text-align: center;
+  list-style: none;
+}
+
+.form_password {
+  display: inline-block;
+}
+
+.centered {
+  text-align: center;
+  margin: 10px;
+}
+
+.edit_profile_avatar_display {
+  width: 75px;
+  height: 75px;
+}
+
 .link {
   text-decoration: none;
   color: black;
@@ -171,11 +190,11 @@ body {
   color: white;
 }
 
-.desk_header, .error_message {
+.page_header, .error_message {
   text-align: center;
   font-family: 'Lora', serif;
 }
-.desk_header > a:hover {
+.page_header > a:hover {
   text-shadow: 1px 1px 10px rgb(30, 160, 220);
 }
 

@@ -1,2 +1,37 @@
-<h1>User Profile</h1>
-{{editUserCtrl.user}}
+<h1 class="page_header">User Profile</h1>
+<div class="centered">
+  <button ng-click="editUserCtrl.editToggle = !editUserCtrl.editToggle" ng-show="!editUserCtrl.editToggle">Edit Profile</button>
+</div>
+<div class="centered">
+  <button ng-click="editUserCtrl.resetUser()" ng-show="editUserCtrl.editToggle">Cancel</button>
+</div>
+<div class="edit_option"><span class="edit_title">Username: </span>
+  <span class="editable" ng-show="!editUserCtrl.editToggle">{{editUserCtrl.user[0].username}}</span>
+  <span ng-show="editUserCtrl.editToggle"><input type="text" ng-model="editUserCtrl.user[0].username"/></span>
+</div>
+<div class="edit_option"><span class="edit_title">First Name: </span>
+  <span class="editable" ng-show="!editUserCtrl.editToggle">{{editUserCtrl.user[0].firstName}}</span>
+  <span ng-show="editUserCtrl.editToggle"><input type="text" ng-model="editUserCtrl.user[0].firstName"/></span>
+</div>
+<div class="edit_option"><span class="edit_title">Last Name: </span>
+  <span class="editable" ng-show="!editUserCtrl.editToggle">{{editUserCtrl.user[0].lastName}}</span>
+  <span ng-show="editUserCtrl.editToggle"><input type="text" ng-model="editUserCtrl.user[0].lastName"/></span>
+</div>
+<div class="edit_option"><span class="edit_title">Email: </span>
+  <span class="editable" ng-show="!editUserCtrl.editToggle">{{editUserCtrl.user[0].email}}</span>
+  <span ng-show="editUserCtrl.editToggle"><input type="text" ng-model="editUserCtrl.user[0].email"/></span>
+</div>
+<div class="edit_option"><span class="edit_title">Avatar: </span>
+  <div ng-show="!editUserCtrl.editToggle">
+    <img ng-show="editUserCtrl.user[0].avatar_url" class="edit_profile_avatar_display" ng-src={{editUserCtrl.user[0].avatar_url}} />
+  </div>
+  <div ng-show="!editUserCtrl.editToggle">
+    <img ng-show="!editUserCtrl.user[0].avatar_url" class="edit_profile_avatar_display" ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" />
+  </div>
+
+  <span ng-show="editUserCtrl.editToggle"><input type="text" ng-model="editUserCtrl.user[0].avatar_url"/></span>
+</div>
+<div class="edit_option"ng-show="editUserCtrl.editToggle"><span class="edit_title">Confirm Password: </span><form class="form_password" ng-submit="editUserCtrl.updateUser()"><input type="password" ng-model="editUserCtrl.user[0].password"/></form></div>
+<div class="centered">
+  <button ng-click="editUserCtrl.updateUser()" ng-show="editUserCtrl.editToggle">Submit</button>
+</div>
