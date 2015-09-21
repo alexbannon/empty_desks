@@ -6,7 +6,8 @@ var deskSchema = new mongoose.Schema({
   title: String,
   description: String,
   lists: Array,
-  users: Array
+  users: Array,
+  updated_at: Date
 })
 
 module.exports = mongoose.model('Desk', deskSchema);

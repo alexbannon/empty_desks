@@ -1,12 +1,12 @@
 <h1 class="page_header">Add a Desk</h1>
 <h4 class="error_message" ng-show="newDeskCtrl.showError">Title and Description Cannot Be Blank</h4>
-<form ng-submit="newDeskCtrl.createDesk()">
+<form class="new_desk_form" ng-submit="newDeskCtrl.createDesk()">
   <div class="new_title_form">
-    <label name="title">Title</label>
+    <label name="title">Title: </label>
     <input type="text" ng-model="newDeskCtrl.newDesk.title">
   </div>
   <div class="new_description_form">
-    <label name="description">Description</label>
+    <label name="description">Description: </label>
     <input type="text" name="description" ng-model="newDeskCtrl.newDesk.description">
   </div>
   <input type="submit" value="Create">
@@ -28,5 +28,3 @@
     </div>
   </div>
 </div>
-
-<h1>{{newDeskCtrl.newDesk.users}}</h1>

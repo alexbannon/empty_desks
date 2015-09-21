@@ -96,6 +96,12 @@ body {
   width: 75px;
   height: 75px;
 }
+.new_desk_form {
+  text-align: center;
+}
+.new_description_form {
+  margin-right: 45px;
+}
 
 .link {
   text-decoration: none;

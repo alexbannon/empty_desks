@@ -37,6 +37,7 @@ var path = require("path");
         });
 
         router.put("/api/desks/:id", function(req, res){
+          req.body.updated_at = new Date();
           Desk.findOneAndUpdate({ "_id": req.params.id}, req.body, { 'new': true }, function(err, desk){
             if (err) return handleError(err);
             res.send(desk);
@@ -47,9 +48,10 @@ var path = require("path");
         router.post('/api/desks', function(req, res){
           console.log(req.body.title)
           if(req.body.title == undefined || req.body.description == undefined){
-            res.send("blank")
+            res.send({"error": "blank"})
           }
           else {
+            req.body.updated_at = new Date();
             Desk.create(req.body, function(err, desk){
               if(err){
                 res.send(err)
