@@ -1,5 +1,16 @@
-<h1 class="desk_header"><a href="/#/desks">Desks</a></h1>
+<h1 class="desk_header" ng-show="homeCtrl.desks.length > 0"><a href="/#/desks">Recent Desks</a></h1>
+<h1 class="desk_header" ng-show="homeCtrl.desks.length == 0"><a href="/#/desks">No Desks Yet...</a></h1>
+
 <div class='allDesks'>
+  <div class="desk" ng-show="homeCtrl.desks.length == 0">
+    <a ng-href="/#/desks/new">
+      <div class="desk_container">
+        <div class="desk_title">Add a Desk</div>
+        <div class="hoz_line"></div>
+        <div class="desk_description">Desks allow you to organize tasks centered around a subject like work, chores at home, or a specific project</div>
+      </div>
+    </a>
+  </div>
   <div class="desk" ng-repeat="desk in homeCtrl.desks | limitTo:4">
     <a ng-href="/#/desk/{{desk._id}}">
       <div class="desk_container">
@@ -10,5 +21,5 @@
     </a>
   </div>
 </div>
-<div class="show_more"><a href="/#/desks"><div>View All</div></a></div>
+<div class="show_more" ng-show="homeCtrl.desks.length > 4"><a ng-href="/#/desks"><div>View All</div></a></div>
 <h1 class="calendar_header"><a href="/#/calendar">Calendar</a></h1>

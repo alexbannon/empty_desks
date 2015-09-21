@@ -13,20 +13,26 @@
       self.newDesk.users = [response.data._id]
     })
     this.createDesk = function(){
-      Desk.save(this.newDesk, function(desk){
-        $location.path("/desk/"+desk._id)
-      })
+      if(!this.newDesk.title || !this.newDesk.description){
+        this.showError = true;
+        return;
+      }
+      else{
+        Desk.save(this.newDesk, function(desk){
+          $location.path("/desk/"+desk._id)
+        })
+      }
     }
   }])
 
-  deskControllers.controller('showDeskController', ['Desk', '$routeParams', function(Desk, $routeParams){
+  deskControllers.controller('showDeskController', ['Desk', '$routeParams', '$location', function(Desk, $routeParams, $location){
     var self = this;
     this.desk = Desk.get({id: $routeParams.id}, function(desk){
       self.desk.lists = desk.lists
     });
     this.newListTitle = "";
     this.newList = function(){
-=      if(self.newListTitle == "" || !self.newListTitle){
+      if(self.newListTitle == "" || !self.newListTitle){
         return
       }
       else {
@@ -34,18 +40,14 @@
         obj["listName"] = self.newListTitle;
         obj["items"] = [];
         this.desk.lists.push(obj)
+        console.log(this.desk.lists)
         this.desk.$update({id: self.desk._id})
       }
     }
-    // this.newList = function(){
-    //   if(self.desks.lists){
-    //     console.log(self.desks.lists)
-    //   }
-    //   else {
-    //     self.desks.lists = [{this.newListTitle: []}]
-    //   }
-    //   this.desk.$addToDesk({id: this.desk._id})
-    // }
+    this.deleteDesk = function(){
+      this.desk.$delete({id: this.desk._id});
+      $location.path("/desks")
+    }
   }])
 
   deskControllers.controller('homeController', ['Desk', function(Desk){

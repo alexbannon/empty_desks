@@ -154,6 +154,7 @@ body {
 }
 .desk_container {
   height: 120px;
+  cursor: pointer;
 }
 
 .show_more{
@@ -170,7 +171,7 @@ body {
   color: white;
 }
 
-.desk_header {
+.desk_header, .error_message {
   text-align: center;
   font-family: 'Lora', serif;
 }
@@ -178,6 +179,9 @@ body {
   text-shadow: 1px 1px 10px rgb(30, 160, 220);
 }
 
+.error_message {
+  color: red;
+}
 
 .calendar_header {
   text-align: center;
