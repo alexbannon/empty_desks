@@ -5,7 +5,7 @@ var path = require("path");
 var bcrypt = require('bcryptjs');
 
 router.get('/api/users', function(req, res) {
-    User.find(function(err, users) {
+    User.find({}, '_id username firstName lastName email', function(err, users) {
       if (err){
         res.send(err);
       }

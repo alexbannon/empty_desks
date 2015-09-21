@@ -10,7 +10,7 @@ var path = require("path");
         // sample api route
         router.get('/api/desks', function(req, res) {
           if(req.user){
-            Desk.find({ "users": req.user._id}, function(err, desks) {
+            Desk.find({ "users": req.user._id}).sort('-updated_at').exec(function(err, desks) {
               console.log(desks)
 
                 // if there is an error retrieving, send the error.
