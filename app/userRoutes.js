@@ -26,22 +26,38 @@ router.get('/api/confirm/current_user', function (req, res) {
 })
 
 
-router.get("/api/users/:search", function(req, res){
+router.get("/api/search/:search", function(req, res){
   var searchResults = [{"users": []}, {"desks": []}];
-  User.find( { $or:[ {'username': req.params.search}, {'firstName': req.params.search}, {'lastName': req.params.search}, {'email': req.params.search}]},
+  searchTerm = new RegExp(req.params.search, 'i')
+  User.find( { $or:[ {'username': searchTerm}, {'firstName': searchTerm}, {'lastName': searchTerm}, {'email': searchTerm}]},
     function(err, users){
       users.forEach(function(user){
-        searchResults.users.push(user);
+        if(user._id != req.user._id){
+          searchResults[0].users.push(user);
+        }
       })
-      Desk.find( { $or:[ {""}]})
+      Desk.find({"title": searchTerm}, function(err, desks){
+        desks.forEach(function(desk){
+          searchResults[1].desks.push(desk);
+        })
+        res.send(searchResults)
+      })
     })
-
-  res.send(foundUsers);
 });
+
+router.get("/api/users/:id", function(req,res){
+  if(req.user){
+    User.findOne({"_id": req.params.id}, "_id username firstName lastName email", function(err, user){
+      res.send(user)
+    })
+  }
+  else{
+    res.send({"error": "not authorized"});
+  }
+})
 
 router.put("/api/users/:id", function(req, res){
   if(req.user._id == req.params.id){
-    console.log(req.session.passport.user)
     if (bcrypt.compareSync(req.body.password, req.body.password_digest)) {
       var user = {
         "username": req.body.username,

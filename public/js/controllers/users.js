@@ -27,8 +27,10 @@
     });
     this.desks = Desk.query();
     this.search_term = $routeParams.search_term;
-    $http.get("/api/users/"+this.search_term).then(function(response){
+    $http.get("/api/search/"+this.search_term).then(function(response){
       self.search_results = response;
+      self.desk_results = response.data[1].desks
+      self.user_results = response.data[0].users
     })
   }]);
 

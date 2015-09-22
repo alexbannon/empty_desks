@@ -1,3 +1,15 @@
-<h1>Search Results</h1>
-{{searchCtrl.search_term}}
-{{searchCtrl.search_results}}
+<h1 class="page_header">Search Results</h1>
+<h2 class="page_header">Other Users</h2>
+<div class="user" ng-repeat="user in searchCtrl.user_results | limitTo:8">
+  <div>
+    <a ng-href="/api/users/{{user._id}}">{{user.username}}</a>
+  </div>
+</div>
+<h2 class="page_header">Your Desks</h2>
+<div class="desk_results" ng-repeat="desk in searchCtrl.desk_results | limitTo:8">
+  <div>
+    <a ng-href="/#/desks/{{desk._id}}">{{desk.title}}</a>
+  </div>
+</div>
+
+{{searchCtrl.desk_results}}
