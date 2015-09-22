@@ -9,6 +9,11 @@
         controller: 'editUserController',
         controllerAs: 'editUserCtrl'
 
+      }).
+      when("/search_results/:search_term", {
+        templateUrl: "views/users/search_results.html",
+        controller: 'searchController',
+        controllerAs: 'searchCtrl'
       })
     }
   ])

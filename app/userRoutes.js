@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var User = require('./models/user');
+var Desk = require('./models/desk');
 var path = require("path");
 var bcrypt = require('bcryptjs');
 
@@ -25,11 +26,17 @@ router.get('/api/confirm/current_user', function (req, res) {
 })
 
 
-router.get("/api/users/:id", function(req, res){
-  User.findOne({ "_id": req.params.id}, 'username', function(err, user){
-    if (err) return handleError(err);
-    res.send(user)
-  })
+router.get("/api/users/:search", function(req, res){
+  var searchResults = [{"users": []}, {"desks": []}];
+  User.find( { $or:[ {'username': req.params.search}, {'firstName': req.params.search}, {'lastName': req.params.search}, {'email': req.params.search}]},
+    function(err, users){
+      users.forEach(function(user){
+        searchResults.users.push(user);
+      })
+      Desk.find( { $or:[ {""}]})
+    })
+
+  res.send(foundUsers);
 });
 
 router.put("/api/users/:id", function(req, res){
@@ -57,6 +64,10 @@ router.put("/api/users/:id", function(req, res){
   else {
     res.send({"error": "not authorized"})
   }
+})
+
+router.post("/#/search_results", function(req, res){
+  res.send(req.body);
 })
 
 

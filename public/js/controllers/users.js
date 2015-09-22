@@ -20,4 +20,16 @@
 
   }]);
 
+  userControllers.controller('searchController', ['User', 'Desk', 'AuthService', "$routeParams", "$http", function(User, Desk, AuthService, $routeParams, $http) {
+    var self = this;
+    AuthService.current_user().then(function(response){
+      self.user = [response.data]
+    });
+    this.desks = Desk.query();
+    this.search_term = $routeParams.search_term;
+    $http.get("/api/users/"+this.search_term).then(function(response){
+      self.search_results = response;
+    })
+  }]);
+
 })();

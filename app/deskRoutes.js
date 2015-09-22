@@ -11,7 +11,6 @@ var path = require("path");
         router.get('/api/desks', function(req, res) {
           if(req.user){
             Desk.find({ "users": req.user._id}).sort('-updated_at').exec(function(err, desks) {
-              console.log(desks)
 
                 // if there is an error retrieving, send the error.
                                 // nothing after res.send(err) will execute
@@ -31,7 +30,6 @@ var path = require("path");
         router.get("/api/desks/:id", function(req, res){
           Desk.findOne({ "_id": req.params.id}, function(err, desk){
             if (err) return handleError(err);
-            console.log(desk)
             res.send(desk)
           })
         });
@@ -46,7 +44,6 @@ var path = require("path");
 
         // route to handle creating goes here (router.post)
         router.post('/api/desks', function(req, res){
-          console.log(req.body.title)
           if(req.body.title == undefined || req.body.description == undefined){
             res.send({"error": "blank"})
           }

@@ -9,4 +9,12 @@ $(document).ready(function(){
       }
     }
   });
+  $(".search_bar").submit(function(e){
+    var search_term = $(".search_input").val();
+    console.log(search_term)
+    e.preventDefault();
+    console.log("searched")
+    window.location.replace("/#/search_results/"+search_term)
+    $(".search_input").val("");
+  })
 })
