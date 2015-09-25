@@ -34,6 +34,17 @@
     this.newListTitle = "";
     this.newList = function(){
       if(self.newListTitle == "" || !self.newListTitle){
+        self.$error_message = "Title Cannot Be Blank";
+        return
+      }
+      var complete = true;
+      self.desk.lists.forEach(function(list){
+        if (list.listName == self.newListTitle) {
+          self.$error_message = "List Already Exists";
+          complete = false;
+        }
+      })
+      if (complete == false){
         return
       }
       else {
@@ -43,12 +54,40 @@
         this.desk.lists.push(obj)
         console.log(this.desk.lists)
         this.desk.$update({id: self.desk._id})
+        self.newListTitle = "";
+        self.$error_message = "";
       }
     }
     this.deleteDesk = function(){
       this.desk.$delete({id: this.desk._id});
       $location.path("/desks")
     }
+    this.addListItem = function(){
+      var self = this;
+      self.desk.lists.forEach(function(list){
+        if(list.newItem){
+          list.items.push(list.newItem);
+          self.desk.$update({id: self.desk._id})
+          list.newItem = ""
+        }
+      })
+    }
+    this.deleteList = function(inputName){
+      var self = this;
+      for(var i = 0; i < self.desk.lists.length; i++){
+        var obj = self.desk.lists[i];
+        if(inputName.indexOf(obj.listName) != -1){
+          self.desk.lists.splice(i, 1);
+        }
+      }
+      self.desk.$update({id: self.desk._id})
+
+    }
+
+    this.addListToCalendar = function(listName){
+      console.log(listName)
+    }
+
   }])
 
   deskControllers.controller('homeController', ['Desk', function(Desk){

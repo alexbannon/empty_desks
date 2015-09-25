@@ -7,6 +7,7 @@ var deskSchema = new mongoose.Schema({
   description: String,
   lists: Array,
   users: Array,
+  comments: Array,
   updated_at: Date
 })
 

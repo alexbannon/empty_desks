@@ -2,34 +2,47 @@
   <h1 class="show_desk_title">{{showDeskCtrl.desk.title}}</h1>
   <div class="show_board_menu" ng-click="show_sidebar = !show_sidebar">< Show Menu</div>
   <h4 class="show_desk_description">{{showDeskCtrl.desk.description}}</h4>
-
-  <h1>Lists</h1>
   <div class="lists">
     <div class="list" ng-repeat="list in showDeskCtrl.desk.lists">
-      {{list.listName}}
-      <div class="item" ng-repeat="listItem in list.items">
-        <ul>
-          <li>{{listItem}}</li>
-        </ul>
+      <div class="list_title">
+        <span>{{list.listName}}</span>
+        <img class="list_options" src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png" ng-click="listshow = !listshow"/>
+        <div class="list_dropdown" ng-show="listshow">
+          <div ng-click="showDeskCtrl.deleteList(list.listName)">Delete List</div>
+          <div ng-click="showDeskCtrl.addListToCalendar(list.listName)">Add Due Date</div>
+        </div>
       </div>
+      <div class="hoz_line"></div>
+        <div class="item" ng-click="listshow = false" ng-repeat="listItem in list.items">
+          <div class="list_item">
+            <span>{{listItem}}</span>
+          </div>
+        </div>
+        <div class="list_item">
+          <form ng-submit="showDeskCtrl.addListItem()">
+            <input type="text" class="input_list_item" ng-model="list.newItem" placeholder="Add Item">
+          </form>
+        </div>
+    </div>
+    <div class="list">
+      <form ng-submit="showDeskCtrl.newList()">
+        <input type="text" placeholder="Add A List" ng-model="showDeskCtrl.newListTitle">
+        <div class="hoz_line"></div>
+        <div class="item">
+          <input type="submit" value="Create List" display="none">
+        </div>
+      </form>
     </div>
   </div>
-    <h1>Add a List</h1>
-    <form ng-submit="showDeskCtrl.newList()">
-      <label ng-model="showDeskCtrl.newListTitle">Title</label>
-      <input type="text" ng-model="showDeskCtrl.newListTitle">
-      <input type="submit" value="Create List">
-    </form>
-  <h1>{{showDeskCtrl.newListTitle}}</h1>
   <div id="sidebar" ng-show="show_sidebar">
     <h3 class="menu_title">Menu</h3>
     <div class="exit_menu" ng-click="show_sidebar = !show_sidebar">X</div>
     <div class="hoz_line"></div>
     <ul>
-      <li ng-click="showDeskCtrl.deleteDesk()">Delete Desk</li>
-      <li>Add Members</li>
-      <li>Edit Desk</li>
-      <li>Comments</li>
+      <li ng-click="showDeskCtrl.deleteDesk()" class="menu_options">Delete Desk</li>
+      <li class="menu_options">Add Members</li>
     </ul>
+    <div class="menu_comment_title">Comments</div>
+    <div class="hoz_line"></div>
   </div>
 </div>
