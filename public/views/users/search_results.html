@@ -2,7 +2,7 @@
 <h2 class="page_header">Other Users</h2>
 <div class="user" ng-repeat="user in searchCtrl.user_results | limitTo:8">
   <div>
-    <a ng-href="/api/users/{{user._id}}">{{user.username}}</a>
+    <a ng-href="/#/users/{{user._id}}">{{user.username}}</a>
   </div>
 </div>
 <h2 class="page_header">Your Desks</h2>
@@ -11,5 +11,3 @@
     <a ng-href="/#/desks/{{desk._id}}">{{desk.title}}</a>
   </div>
 </div>
-
-{{searchCtrl.desk_results}}

@@ -27,6 +27,10 @@ router.get('/api/confirm/current_user', function (req, res) {
 
 
 router.get("/api/search/:search", function(req, res){
+  if(!req.user._id){
+    res.send({"error": "not authorized"})
+    return
+  }
   var searchResults = [{"users": []}, {"desks": []}];
   searchTerm = new RegExp(req.params.search, 'i')
   User.find( { $or:[ {'username': searchTerm}, {'firstName': searchTerm}, {'lastName': searchTerm}, {'email': searchTerm}]},

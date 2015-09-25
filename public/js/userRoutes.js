@@ -14,6 +14,11 @@
         templateUrl: "views/users/search_results.html",
         controller: 'searchController',
         controllerAs: 'searchCtrl'
+      }).
+      when("/users/:id", {
+        templateUrl: "views/users/show.html",
+        controller: "userShowController",
+        controllerAs: "userShowCtrl"
       })
     }
   ])

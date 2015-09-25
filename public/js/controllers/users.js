@@ -34,4 +34,14 @@
     })
   }]);
 
+  userControllers.controller("userShowController", ['User', 'Desk', '$routeParams', '$location', 'AuthService', function(User, Desk, $routeParams, $location, AuthService) {
+    var self = this;
+    this.user = User.get({id: $routeParams.id})
+    AuthService.current_user().then(function(response){
+      if($routeParams.id == response.data._id){
+        $location.path("/profile")
+      }
+    });
+  }])
+
 })();

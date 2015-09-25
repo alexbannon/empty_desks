@@ -25,11 +25,12 @@
     }
   }])
 
-  deskControllers.controller('showDeskController', ['Desk', '$routeParams', '$location', function(Desk, $routeParams, $location){
+  deskControllers.controller('showDeskController', ['Desk', 'User', '$routeParams', '$location', function(Desk, User, $routeParams, $location){
     var self = this;
     this.desk = Desk.get({id: $routeParams.id}, function(desk){
       self.desk.lists = desk.lists
     });
+    this.users = User.query();
     this.newListTitle = "";
     this.newList = function(){
       if(self.newListTitle == "" || !self.newListTitle){
