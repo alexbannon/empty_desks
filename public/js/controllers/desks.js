@@ -41,6 +41,7 @@
       self.desk.lists.forEach(function(list){
         if (list.listName == self.newListTitle) {
           self.$error_message = "List Already Exists";
+          self.newListTitle = "";
           complete = false;
         }
       })
@@ -71,6 +72,9 @@
           list.newItem = ""
         }
       })
+    }
+    this.deleteItem = function(list){
+      console.log(list)
     }
     this.deleteList = function(inputName){
       var self = this;

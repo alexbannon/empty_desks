@@ -7,7 +7,6 @@ var path = require("path");
         // handle things like api calls
         // authentication routes
 
-        // sample api route
         router.get('/api/desks', function(req, res) {
           if(req.user){
             Desk.find({ "users": req.user._id}).sort('-updated_at').exec(function(err, desks) {

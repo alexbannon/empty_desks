@@ -78,6 +78,13 @@ body {
   right: 10px;
   cursor: pointer;
 }
+.item_delete {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 10px;
+  cursor: pointer;
+}
 .list_dropdown {
   position: absolute;
   right: -40px;

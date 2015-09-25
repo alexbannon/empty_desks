@@ -16,6 +16,7 @@
         <div class="item" ng-click="listshow = false" ng-repeat="listItem in list.items">
           <div class="list_item">
             <span>{{listItem}}</span>
+            <img class="item_delete" src="http://www.i2symbol.com/images/symbols/popular/heavy_ballot_x_u2718_icon_256x256.png" ng-click="showDeskCtrl.deleteItem(listItem)"/>
           </div>
         </div>
         <div class="list_item">
@@ -29,6 +30,7 @@
         <input type="text" placeholder="Add A List" ng-model="showDeskCtrl.newListTitle">
         <div class="hoz_line"></div>
         <div class="item">
+          <div class="error_message" ng-show="showDeskCtrl.$error_message">{{showDeskCtrl.$error_message}}</div>
           <input type="submit" value="Create List" display="none">
         </div>
       </form>
