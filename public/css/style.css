@@ -24,6 +24,52 @@ body {
   left: 10px;
   cursor: pointer;
 }
+.comment_avatar {
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  left: 8px;
+}
+.comment_ul {
+  list-style-type: none;
+  margin:6px auto;
+  text-align: left;
+}
+.comment_letter {
+  border: 1px solid black;
+  width: 19px;
+  height: 19px;
+  border-radius: 4px;
+  text-align: center;
+  position: absolute;
+  left: 16px;
+  color: white;
+  background-color: rgb(30, 160, 220);
+}
+.comment {
+  width: 85%;
+}
+.member_photo {
+  width: 24px;
+  height: 24px;
+  margin: 0 0 0 4px;
+}
+.comment_delete{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 10px;
+  cursor: pointer;
+}
+.photo_container {
+  display: inline-block;
+}
+.new_comment {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  left: -20px;
+}
 
 #nav_bar * {
   display: inline-block;

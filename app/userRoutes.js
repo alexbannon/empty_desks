@@ -51,7 +51,7 @@ router.get("/api/search/:search", function(req, res){
 
 router.get("/api/users/:id", function(req,res){
   if(req.user){
-    User.findOne({"_id": req.params.id}, "_id username firstName lastName email", function(err, user){
+    User.findOne({"_id": req.params.id}, "_id username firstName lastName email avatar_url", function(err, user){
       res.send(user)
     })
   }

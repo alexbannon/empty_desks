@@ -1,3 +1,5 @@
+{{showDeskCtrl.desk.users}}
+{{showDeskCtrl.avatars}}
 <div class="show_desk_body">
   <h1 class="show_desk_title">{{showDeskCtrl.desk.title}}</h1>
   <div class="show_board_menu" ng-click="show_sidebar = !show_sidebar">< Show Menu</div>
@@ -9,9 +11,15 @@
   <div class="lists">
     <div class="list" ng-repeat="list in showDeskCtrl.desk.lists">
       <div class="list_title">
-        <img class="calendar_menu_button" src="http://www.hudson.oh.us/images/pages/N725/calendar-icon.png" ng-click="showDeskCtrl.addListToCalendar(list.listName)"/>
-        <span>{{list.listName}}</span>
-        <img class="list_options" src="http://findicons.com/files/icons/1580/devine_icons_part_2/128/trash_recyclebin_empty_closed.png" ng-click="showDeskCtrl.deleteList(list.listName)"/>
+        <div class="list_title">
+          <img class="calendar_menu_button" src="http://www.hudson.oh.us/images/pages/N725/calendar-icon.png" ng-click="showDeskCtrl.addListToCalendar(list.listName)"/>
+          <span>{{list.listName}}</span>
+          <img class="list_options" src="http://findicons.com/files/icons/1580/devine_icons_part_2/128/trash_recyclebin_empty_closed.png" ng-click="showDeskCtrl.deleteList(list.listName)"/>
+          <div class="calendar_dropdown" ng-show="calendarShow">
+            <div ng-click="showDeskCtrl.deleteList(list.listName)">Delete List</div>
+            <div ng-click="showDeskCtrl.addListToCalendar(list.listName)">Add Due Date</div>
+          </div>
+        </div>
       </div>
       <div class="hoz_line"></div>
         <div class="item" ng-click="listshow = false" ng-repeat="listItem in list.items">
@@ -45,7 +53,34 @@
       <li ng-click="showDeskCtrl.deleteDesk()" class="menu_options">Delete Desk</li>
       <li class="menu_options">Add Members</li>
     </ul>
+    <div class="member_photos" ng-repeat="avatar in showDeskCtrl.avatars">
+      <div class="photo_container" ng-if="avatar.avatar_image.length > 1">
+        <a ng-href="/#/users/{{avatar.userId}}"><img ng-src='{{avatar.avatar_image}}' class='member_photo' /></a>
+      </div>
+      <div class="photo_container" ng-if="avatar.avatar_image.length <= 1">
+        <div class="member_letter">{{avatar.avatar_image}}</div>
+      </div>
+    </div>
+
     <div class="menu_comment_title">Comments</div>
     <div class="hoz_line"></div>
+    <ul class='comment_ul'>
+      <div class="comment" ng-repeat="comment in showDeskCtrl.desk.comments">
+        <li class='comment_ul'>
+          <div ng-if="comment.picture">
+            <img ng-src='{{comment.picture}}' class='comment_avatar' ng-show="comment.picture"/>
+          </div>
+          <div ng-if="comment.letter">
+            <div class="comment_letter" ng-show="comment.letter">{{comment.letter}}</div>
+          </div>
+          <span>{{comment.comment}}</span>
+          <img class="comment_delete" src="http://www.i2symbol.com/images/symbols/popular/heavy_ballot_x_u2718_icon_256x256.png" ng-click="showDeskCtrl.deleteComment(comment.comment, $index)"/>
+        </li>
+      </div>
+      <form ng-submit="showDeskCtrl.addComment()">
+        <input type="text" class="new_comment" placeholder="Add Comment" ng-model="showDeskCtrl.newComment">
+        <input type="submit" style="position: absolute; left: -9999px">
+      </form>
+    </ul>
   </div>
 </div>

@@ -25,13 +25,42 @@
     }
   }])
 
-  deskControllers.controller('showDeskController', ['Desk', 'User', '$routeParams', '$location', function(Desk, User, $routeParams, $location){
+  deskControllers.controller('showDeskController', ['Desk', 'User', '$routeParams', '$location', 'AuthService', function(Desk, User, $routeParams, $location, AuthService){
     var self = this;
     this.desk = Desk.get({id: $routeParams.id}, function(desk){
       self.desk.lists = desk.lists
     });
     this.users = User.query();
     this.newListTitle = "";
+    this.avatars = [];
+    var init = function() {
+      Desk.get({id: $routeParams.id}, function(desk){
+        desk.users.forEach(function(user){
+          User.get({id: user}, function(user){
+            if(user.avatar_url){
+              var obj = {}
+              obj["avatar_image"] = user.avatar_url;
+              obj["userId"] = user._id;
+              self.avatars.push(obj)
+            }
+            else{
+              var first_letter = user.username.slice(0,1)
+              var obj = {}
+              obj["avatar_image"] = first_letter;
+              obj["userId"] = user._id
+              self.avatars.push(obj)
+            }
+          })
+        })
+      });
+    }
+    init();
+    this.user_avatars = this.users.forEach(function(user){
+      User.get({id: user}, function(user){
+
+      })
+    })
+
     this.newList = function(){
       if(self.newListTitle == "" || !self.newListTitle){
         self.$error_message = "Title Cannot Be Blank";
@@ -52,6 +81,7 @@
         var obj = {}
         obj["listName"] = self.newListTitle;
         obj["items"] = [];
+        obj["dueDate"] = null;
         this.desk.lists.push(obj)
         console.log(this.desk.lists)
         this.desk.$update({id: self.desk._id})
@@ -117,6 +147,38 @@
 
     this.addListToCalendar = function(listName){
       console.log(listName)
+    }
+
+    this.addComment = function(){
+      var self = this;
+      AuthService.current_user().then(function(response){
+        var userId = [response.data._id]
+        console.log(response.data)
+        var obj = {};
+        obj["userId"] = userId[0]
+        obj["comment"] = self.newComment
+        if(response.data.avatar_url){
+          obj["picture"] = response.data.avatar_url
+        }
+        else if(response.data.firstName){
+          console.log(response.data.firstName)
+          var first_letter = response.data.firstName.slice(0,1)
+          obj["letter"] = first_letter
+        }
+        else{
+          var first_letter = response.data.username.slice(0,1)
+          obj["letter"] = first_letter
+        }
+        self.desk.comments.push(obj)
+        self.desk.$update({id: self.desk._id})
+        self.newComment = ""
+      })
+
+    }
+
+    this.deleteComment = function(comment, index){
+      self.desk.comments.splice(index, 1);
+      self.desk.$update({id: self.desk._id})
     }
 
   }])
