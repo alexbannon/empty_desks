@@ -1,4 +1,3 @@
-{{showDeskCtrl.desk}}
 <div class="show_desk_body">
   <h1 class="show_desk_title">{{showDeskCtrl.desk.title}}</h1>
   <div class="show_board_menu" ng-click="show_sidebar = !show_sidebar">< Show Menu</div>
@@ -10,12 +9,9 @@
   <div class="lists">
     <div class="list" ng-repeat="list in showDeskCtrl.desk.lists">
       <div class="list_title">
+        <img class="calendar_menu_button" src="http://www.hudson.oh.us/images/pages/N725/calendar-icon.png" ng-click="showDeskCtrl.addListToCalendar(list.listName)"/>
         <span>{{list.listName}}</span>
-        <img class="list_options" src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png" ng-click="listshow = !listshow"/>
-        <div class="list_dropdown" ng-show="listshow">
-          <div ng-click="showDeskCtrl.deleteList(list.listName)">Delete List</div>
-          <div ng-click="showDeskCtrl.addListToCalendar(list.listName)">Add Due Date</div>
-        </div>
+        <img class="list_options" src="http://findicons.com/files/icons/1580/devine_icons_part_2/128/trash_recyclebin_empty_closed.png" ng-click="showDeskCtrl.deleteList(list.listName)"/>
       </div>
       <div class="hoz_line"></div>
         <div class="item" ng-click="listshow = false" ng-repeat="listItem in list.items">

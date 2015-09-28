@@ -91,14 +91,15 @@
       })
     }
     this.deleteItem = function(listItem, listName){
-      console.log(listItem, listName)
+      var self = this;
       this.desk.lists.forEach(function(list){
         if(list["listName"] == listName){
-          list.items.forEach(function(item){
-            if(item == listItem){
-              console.log(item)
+          for(var i = 0; i < list.items.length; i++){
+            if(list.items[i] == listItem){
+              list.items.splice(i, 1);
+              self.desk.$update({id: self.desk._id})
             }
-          })
+          }
         }
       })
     }

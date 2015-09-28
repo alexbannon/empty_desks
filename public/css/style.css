@@ -17,6 +17,14 @@ body {
   height: 5em;
 }
 
+.calendar_menu_button {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  left: 10px;
+  cursor: pointer;
+}
+
 #nav_bar * {
   display: inline-block;
   text-align: center;
