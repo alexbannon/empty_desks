@@ -25,9 +25,9 @@
         controllerAs: 'showDeskCtrl'
       }).
       when("/calendar", {
-        templateUrl: "views/desks/calendar.html",
-        controller: 'deskCalendarController',
-        controllerAs: 'calCtrl'
+        templateUrl: "views/calendar/calendar.html",
+        controller: 'showCalendarController',
+        controllerAs: 'showCalCtrl'
       })
     }
   ])

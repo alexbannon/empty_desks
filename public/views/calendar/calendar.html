@@ -1,0 +1,22 @@
+<script>
+  $(document).ready(function() {
+
+      // page is now ready, initialize the calendar...
+
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'title',
+          center: 'today prev,next',
+          right: 'month,basicWeek,basicDay'
+        },
+        eventSources: [
+          {
+            url: "/api/calendar"
+          }
+        ]
+      })
+
+  });
+</script>
+<h1 class="page_header">Calendar</h1>
+<div id='calendar'></div>

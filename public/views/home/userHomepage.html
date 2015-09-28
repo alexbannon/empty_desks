@@ -1,5 +1,21 @@
-<h1 class="page_header" ng-show="homeCtrl.desks.length > 0"><a href="/#/desks">Recent Desks</a></h1>
-<h1 class="page_header" ng-show="homeCtrl.desks.length == 0"><a href="/#/desks">No Desks Yet...</a></h1>
+<script>
+  $(document).ready(function() {
+
+      // page is now ready, initialize the calendar...
+
+      $('#calendar').fullCalendar({
+        eventSources: [
+          {
+            url: "/api/calendar"
+          }
+        ]
+          // put your options and callbacks here
+      })
+
+  });
+</script>
+
+<h1 class="page_header"><a href="/#/desks">Recent Desks</a></h1>
 
 <div class='allDesks'>
   <div class="desk" ng-show="homeCtrl.desks.length == 0">
@@ -23,3 +39,4 @@
 </div>
 <div class="show_more" ng-show="homeCtrl.desks.length > 4"><a ng-href="/#/desks"><div>View All</div></a></div>
 <h1 class="calendar_header"><a href="/#/calendar">Calendar</a></h1>
+<div id='calendar'></div>

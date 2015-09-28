@@ -25,7 +25,7 @@
     }
   }])
 
-  deskControllers.controller('showDeskController', ['Desk', 'User', '$routeParams', '$location', 'AuthService', function(Desk, User, $routeParams, $location, AuthService){
+  deskControllers.controller('showDeskController', ['Desk', 'User', '$routeParams', '$location', 'AuthService', '$scope', function(Desk, User, $routeParams, $location, AuthService, $scope){
     var self = this;
     this.desk = Desk.get({id: $routeParams.id}, function(desk){
       self.desk.lists = desk.lists
@@ -55,6 +55,7 @@
       });
     }
     init();
+
     this.user_avatars = this.users.forEach(function(user){
       User.get({id: user}, function(user){
 
@@ -133,20 +134,20 @@
         }
       })
     }
-    this.deleteList = function(inputName){
+    this.deleteList = function(inputName, index){
       var self = this;
-      for(var i = 0; i < self.desk.lists.length; i++){
-        var obj = self.desk.lists[i];
-        if(inputName.indexOf(obj.listName) != -1){
-          self.desk.lists.splice(i, 1);
-        }
+      console.log(self.desk.lists[index])
+      if(self.desk.lists[index].listName == inputName){
+        self.desk.lists.splice(index, 1);
+        self.desk.$update({id: self.desk._id})
       }
-      self.desk.$update({id: self.desk._id})
-
+      else{
+        console.log("error")
+      }
     }
 
-    this.addListToCalendar = function(listName){
-      console.log(listName)
+    this.addListToCalendar = function(index){
+      this.desk.$update({id: self.desk._id})
     }
 
     this.addComment = function(){
@@ -186,10 +187,5 @@
   deskControllers.controller('homeController', ['Desk', function(Desk){
     this.desks = Desk.query();
   }])
-
-  deskControllers.controller('deskCalendarController', ['Desk', function(Desk){
-    this.desks = Desk.query();
-  }])
-
 
 })();

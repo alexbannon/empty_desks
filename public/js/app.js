@@ -8,6 +8,7 @@
     'deskServices',
     'userServices',
     'userControllers',
+    'calendarControllers',
     'deskRouter',
     'userRouter',
     'deskDirectives'

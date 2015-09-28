@@ -65,6 +65,34 @@ var path = require("path");
           })
         })
 
+        router.get("/api/calendar", function(req,res){
+          if(req.user){
+            Desk.find({ "users": req.user._id}, function(err, desks) {
+
+                // if there is an error retrieving, send the error.
+                                // nothing after res.send(err) will execute
+                if (err){
+                  res.send(err);
+                }
+                var events = []
+                desks.forEach(function(desk){
+                  desk.lists.forEach(function(list){
+                    if(list.dueDate){
+                      var obj = {};
+                      obj["title"] = list.listName;
+                      obj["start"] = list.dueDate;
+                      events.push(obj);
+                    }
+                  })
+                })
+                res.send(events);
+            });
+          }
+          else {
+            res.send({});
+          }
+        })
+
         // frontend routes =========================================================
         // route to handle all angular requests
 

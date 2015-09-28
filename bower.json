@@ -17,6 +17,7 @@
     "angular": "~1.4.5",
     "angular-resource": "~1.4.5",
     "angular-route": "~1.4.5",
+    "fullcalendar": "~2.4.0",
     "jquery": "~2.1.4"
   }
 }
