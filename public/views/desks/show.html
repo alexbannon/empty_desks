@@ -1,7 +1,12 @@
+{{showDeskCtrl.desk}}
 <div class="show_desk_body">
   <h1 class="show_desk_title">{{showDeskCtrl.desk.title}}</h1>
   <div class="show_board_menu" ng-click="show_sidebar = !show_sidebar">< Show Menu</div>
   <h4 class="show_desk_description">{{showDeskCtrl.desk.description}}</h4>
+  <div class="list_item error_message" ng-show="showDeskCtrl.$item_error_message">
+    {{showDeskCtrl.$item_error_message}}
+  </div>
+
   <div class="lists">
     <div class="list" ng-repeat="list in showDeskCtrl.desk.lists">
       <div class="list_title">
@@ -16,7 +21,7 @@
         <div class="item" ng-click="listshow = false" ng-repeat="listItem in list.items">
           <div class="list_item">
             <span>{{listItem}}</span>
-            <img class="item_delete" src="http://www.i2symbol.com/images/symbols/popular/heavy_ballot_x_u2718_icon_256x256.png" ng-click="showDeskCtrl.deleteItem(listItem)"/>
+            <img class="item_delete" src="http://www.i2symbol.com/images/symbols/popular/heavy_ballot_x_u2718_icon_256x256.png" ng-click="showDeskCtrl.deleteItem(listItem, list.listName)"/>
           </div>
         </div>
         <div class="list_item">

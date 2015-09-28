@@ -67,14 +67,40 @@
       var self = this;
       self.desk.lists.forEach(function(list){
         if(list.newItem){
-          list.items.push(list.newItem);
-          self.desk.$update({id: self.desk._id})
-          list.newItem = ""
+          var keep_going = true;
+          list.items.forEach(function(item){
+            console.log(item)
+            console.log(list.newItem)
+            if(item == list.newItem){
+              keep_going = false;
+              return
+            }
+          })
+          if(keep_going == false){
+            self.$item_error_message = "Item Already Exists";
+            list.newItem = ""
+            return
+          }
+          else{
+            list.items.push(list.newItem);
+            self.desk.$update({id: self.desk._id})
+            self.$item_error_message = "";
+            list.newItem = ""
+          }
         }
       })
     }
-    this.deleteItem = function(list){
-      console.log(list)
+    this.deleteItem = function(listItem, listName){
+      console.log(listItem, listName)
+      this.desk.lists.forEach(function(list){
+        if(list["listName"] == listName){
+          list.items.forEach(function(item){
+            if(item == listItem){
+              console.log(item)
+            }
+          })
+        }
+      })
     }
     this.deleteList = function(inputName){
       var self = this;
