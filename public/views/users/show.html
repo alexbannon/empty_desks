@@ -7,3 +7,13 @@
 <div class="page_header">
   {{userShowCtrl.user.email}}
 </div>
+
+<div align="center" class="buffer">
+  <select ng-model="userShowCtrl.selectedDesk" data-ng-options="desk._id as desk.title for desk in userShowCtrl.desks" ng-change="userShowCtrl.updateDesk(userShowCtrl.selectedDesk)">
+    <option value="">Add User to Desk</option>
+  </select>
+</div>
+
+<div class="page_header error_message" ng-show="userShowCtrl.$error">
+  {{userShowCtrl.$error}}
+</div>

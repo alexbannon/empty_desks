@@ -86,6 +86,9 @@ body {
   right: 10px;
   cursor: pointer;
 }
+.buffer {
+  margin: 20px;
+}
 .photo_container {
   display: inline-block;
 }

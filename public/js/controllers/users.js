@@ -34,7 +34,7 @@
     })
   }]);
 
-  userControllers.controller("userShowController", ['User', 'Desk', '$routeParams', '$location', 'AuthService', function(User, Desk, $routeParams, $location, AuthService) {
+  userControllers.controller("userShowController", ['User', 'Desk', '$routeParams', '$location', 'AuthService', '$scope', function(User, Desk, $routeParams, $location, AuthService, $scope) {
     var self = this;
     this.user = User.get({id: $routeParams.id})
     AuthService.current_user().then(function(response){
@@ -42,6 +42,27 @@
         $location.path("/profile")
       }
     });
+    this.desks = Desk.query();
+    this.updateDesk = function(item){
+      Desk.get({id: item}, function(desk){
+        var desk = desk;
+        var keep_going = true;
+        desk.users.forEach(function(user){
+          if(user == self.user._id){
+            keep_going = false;
+            return;
+          }
+        })
+        if(keep_going == false){
+          self.$error = "User Already A Member of that Desk"
+        }
+        else{
+          desk.users.push(self.user._id)
+          desk.$update({id: item})
+          self.$error = ""
+        }
+      })
+    }
   }])
 
 })();
