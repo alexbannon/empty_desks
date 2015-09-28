@@ -309,6 +309,7 @@ body {
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
   justify-content: center;
+  -webkit-justify-content: center;
 }
 .desk {
   display: inline-block;
@@ -477,6 +478,14 @@ body {
 /***********************
  * Configurable Styles *
  ***********************/
+ @media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) { @media
+   {
+       .flexsearch {
+        position: relative;
+        top: -20px;
+       }
+   }
+ }
 .flexsearch {
 }
 
