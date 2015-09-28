@@ -1,13 +1,27 @@
 <h1 class="page_header">Search Results</h1>
-<h2 class="page_header">Other Users</h2>
+<h2 class="page_header">Users</h2>
+<div class="page_header" ng-if="searchCtrl.user_results.length == 0">
+  No Users Found
+</div>
 <div class="user" ng-repeat="user in searchCtrl.user_results | limitTo:8">
   <div>
-    <a ng-href="/#/users/{{user._id}}">{{user.username}}</a>
+    <a ng-href="/#/users/{{user._id}}">
+      <div class="page_header">
+        {{user.username}}
+      </div>
+    </a>
   </div>
 </div>
 <h2 class="page_header">Your Desks</h2>
+<div class="page_header" ng-if="searchCtrl.desk_results.length == 0">
+  You Don't Have A Desk With That Name
+</div>
 <div class="desk_results" ng-repeat="desk in searchCtrl.desk_results | limitTo:8">
   <div>
-    <a ng-href="/#/desk/{{desk._id}}">{{desk.title}}</a>
+    <a ng-href="/#/desk/{{desk._id}}">
+      <div class="page_header">
+        {{desk.title}}
+      </div>
+    </a>
   </div>
 </div>

@@ -1,4 +1,3 @@
-{{showDeskCtrl.desk}}
 <div class="show_desk_body">
   <h1 class="show_desk_title">{{showDeskCtrl.desk.title}}</h1>
   <div class="show_board_menu" ng-click="show_sidebar = !show_sidebar">< Show Menu</div>
@@ -74,12 +73,14 @@
         <div class="sidebar_result_email">{{result.email}}</div>
       </div>
     </div>
-    <div class="member_photos" ng-repeat="avatar in showDeskCtrl.avatars">
-      <div class="photo_container" ng-if="avatar.avatar_image.length > 1">
-        <a ng-href="/#/users/{{avatar.userId}}"><img ng-src='{{avatar.avatar_image}}' class='member_photo' /></a>
-      </div>
-      <div class="photo_container" ng-if="avatar.avatar_image.length <= 1">
-        <div class="member_letter">{{avatar.avatar_image}}</div>
+      <div class="member_photos" ng-repeat="avatar in showDeskCtrl.avatars">
+        <div class="photo_container">
+          <div ng-if="avatar.avatar_image.length > 1">
+            <a ng-href="/#/users/{{avatar.userId}}"><img ng-src='{{avatar.avatar_image}}' class='member_photo' /></a>
+          </div>
+          <div ng-if="avatar.avatar_image.length <= 1">
+            <a ng-href="/#/users/{{avatar.userId}}"><div class="member_photo">{{avatar.avatar_image}}</div></a>
+          </div>
       </div>
     </div>
 

@@ -152,9 +152,7 @@
     }
 
     this.findEmail = function(){
-      console.log("search")
       var self = this;
-      console.log(self.sidebar_search)
       if(self.sidebar_search.length > 5){
         $http.get("/api/searchemails/"+self.sidebar_search).then(function(response){
           console.log(response.data)
