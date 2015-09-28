@@ -1,3 +1,4 @@
+{{showDeskCtrl.desk}}
 <div class="show_desk_body">
   <h1 class="show_desk_title">{{showDeskCtrl.desk.title}}</h1>
   <div class="show_board_menu" ng-click="show_sidebar = !show_sidebar">< Show Menu</div>
@@ -57,7 +58,21 @@
       <input type="text" class="sidebar_search" ng-model="showDeskCtrl.sidebar_search" placeholder="Enter Email" ng-keyup="showDeskCtrl.findEmail()">
     </div>
     <div ng-repeat="result in showDeskCtrl.searchResults">
-      <div>{{result}}</div>
+      <div class="one_result" ng-click="showDeskCtrl.addMemberToDesk(result._id)">
+        <div ng-if="result.avatar_url">
+          <img class="avatar_result" ng-src="result.avatar_url" />
+        </div>
+        <div ng-if="!result.avatar_url">
+          <img class="avatar_result" ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" />
+        </div>
+        <div ng-if="result.firstName">
+          <div class="sidebar_result_first_name">{{result.firstName}}</div>
+        </div>
+        <div ng-if="result.lastName">
+          <div class="sidebar_result_last_name">{{result.lastName}}</div>
+        </div>
+        <div class="sidebar_result_email">{{result.email}}</div>
+      </div>
     </div>
     <div class="member_photos" ng-repeat="avatar in showDeskCtrl.avatars">
       <div class="photo_container" ng-if="avatar.avatar_image.length > 1">

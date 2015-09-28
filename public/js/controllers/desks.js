@@ -166,6 +166,13 @@
       }
     }
 
+    this.addMemberToDesk = function(id){
+      console.log(id)
+      this.desk.users.push(id)
+      this.desk.$update({id: self.desk._id})
+
+    }
+
     this.addComment = function(){
       var self = this;
       AuthService.current_user().then(function(response){

@@ -6,7 +6,12 @@ var path = require("path");
         // server routes ===========================================================
         // handle things like api calls
         // authentication routes
-
+        router.get("/api/alldesks", function(req, res){
+          Desk.find({}, function(err, desks){
+            res.send(desks)
+          })
+        })
+        
         router.get('/api/desks', function(req, res) {
           if(req.user){
             Desk.find({ "users": req.user._id}).sort('-updated_at').exec(function(err, desks) {
