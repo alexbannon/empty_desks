@@ -137,6 +137,10 @@ body {
   right: 3px;
   cursor: pointer;
 }
+.sidebar_search{
+  width: 90%;
+  margin: 0 0 15px 10px;
+}
 .item_delete {
   position: absolute;
   width: 15px;

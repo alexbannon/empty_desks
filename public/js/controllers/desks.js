@@ -25,7 +25,7 @@
     }
   }])
 
-  deskControllers.controller('showDeskController', ['Desk', 'User', '$routeParams', '$location', 'AuthService', '$scope', function(Desk, User, $routeParams, $location, AuthService, $scope){
+  deskControllers.controller('showDeskController', ['Desk', 'User', '$routeParams', '$location', 'AuthService', '$scope', '$http', function(Desk, User, $routeParams, $location, AuthService, $scope, $http){
     var self = this;
     this.desk = Desk.get({id: $routeParams.id}, function(desk){
       self.desk.lists = desk.lists
@@ -33,6 +33,7 @@
     this.users = User.query();
     this.newListTitle = "";
     this.avatars = [];
+    this.searchResults = [];
     var init = function() {
       Desk.get({id: $routeParams.id}, function(desk){
         desk.users.forEach(function(user){
@@ -148,6 +149,21 @@
 
     this.addListToCalendar = function(index){
       this.desk.$update({id: self.desk._id})
+    }
+
+    this.findEmail = function(){
+      console.log("search")
+      var self = this;
+      console.log(self.sidebar_search)
+      if(self.sidebar_search.length > 5){
+        $http.get("/api/searchemails/"+self.sidebar_search).then(function(response){
+          console.log(response.data)
+          self.searchResults = response.data;
+        })
+      }
+      else {
+        self.searchResults = [];
+      }
     }
 
     this.addComment = function(){

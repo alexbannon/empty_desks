@@ -25,6 +25,22 @@ router.get('/api/confirm/current_user', function (req, res) {
   }
 })
 
+router.get("/api/searchemails/:search", function(req, res){
+  if(!req.user){
+    res.send({"error": "not authorized"})
+    return
+  }
+  searchTerm = new RegExp(req.params.search, 'i');
+  var usersResponse = [];
+  User.find({'email': searchTerm}, function(err, users){
+    users.forEach(function(user){
+      if(user._id != req.user._id){
+        usersResponse.push(user);
+      }
+    })
+    res.send(usersResponse)
+  })
+})
 
 router.get("/api/search/:search", function(req, res){
   if(!req.user._id){

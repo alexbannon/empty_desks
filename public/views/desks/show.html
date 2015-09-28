@@ -51,8 +51,14 @@
     <div class="hoz_line"></div>
     <ul>
       <li ng-click="showDeskCtrl.deleteDesk()" class="menu_options">Delete Desk</li>
-      <li class="menu_options">Add Members</li>
+      <li class="menu_options" ng-click="addmember = !addmember">Add Members</li>
     </ul>
+    <div class="find_member_email" ng-show="addmember">
+      <input type="text" class="sidebar_search" ng-model="showDeskCtrl.sidebar_search" placeholder="Enter Email" ng-keyup="showDeskCtrl.findEmail()">
+    </div>
+    <div ng-repeat="result in showDeskCtrl.searchResults">
+      <div>{{result}}</div>
+    </div>
     <div class="member_photos" ng-repeat="avatar in showDeskCtrl.avatars">
       <div class="photo_container" ng-if="avatar.avatar_image.length > 1">
         <a ng-href="/#/users/{{avatar.userId}}"><img ng-src='{{avatar.avatar_image}}' class='member_photo' /></a>
