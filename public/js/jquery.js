@@ -11,9 +11,7 @@ $(document).ready(function(){
   });
   $(".search_bar").submit(function(e){
     var search_term = $(".search_input").val();
-    console.log(search_term)
     e.preventDefault();
-    console.log("searched")
     window.location.replace("/#/search_results/"+search_term)
     $(".search_input").val("");
   })
@@ -29,7 +27,6 @@ $(document).ready(function(){
     $('#background').css({'height': vph + 'px'});
     $("#overlay_signin").css({'height': vph + 'px'});
   }
-  $("sign_up_window").hide();
   $("#sign_in").css("background-color", "rgb(40, 32, 111)");
   $("#sign_up").click(function(){
     $("#sign_in").css("background-color", "rgb(30, 62, 141)");

@@ -144,9 +144,6 @@ passport.use('local-signin', new LocalStrategy(
 passport.use('local-signup', new LocalStrategy(
   {passReqToCallback : true}, //allows us to pass back the request to the callback
   function(req, username, password, done) {
-    // for(var property in req){
-    //   console.log(req[property])
-    // }
     funct.localReg(username, req.body.firstName, req.body.lastName, req.body.email, req.body.avatar_url, password)
     .then(function (user) {
       if (user) {
@@ -173,7 +170,6 @@ passport.use('local-signup', new LocalStrategy(
 app.listen(port);
 
 app.get("/", function(req, res){
-  console.log("rendering homepage as I should")
   res.render("homepage", {user: req.user})
 });
 
@@ -188,13 +184,13 @@ app.get('/signin', function(req, res){
 
 app.post('/local-reg', passport.authenticate('local-signup', {
   successRedirect: '/#/',
-  failureRedirect: '/signin'
+  failureRedirect: '/#/'
   })
 );
 
 app.post('/login', passport.authenticate('local-signin', {
   successRedirect: '/#/',
-  failureRedirect: '/signin'
+  failureRedirect: '/#/'
   })
 );
 

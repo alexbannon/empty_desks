@@ -50,7 +50,6 @@ exports.localAuth = function (username, password) {
       deferred.resolve(false);
     }
     else {
-      console.log(user)
       var hash = user.password_digest
       if (bcrypt.compareSync(password, hash)) {
         deferred.resolve(user);

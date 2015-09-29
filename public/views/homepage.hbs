@@ -98,7 +98,16 @@
       </form>
     </div>
     <div id="sign_up_window">
-      Sign Up For Free
+      <span class="sign_up_for_free">Sign Up For Free</span>
+      <form id="local-reg" action="/local-reg" method="post">
+        <input id="username_signup_input" type="text" name="username" placeholder="Username *" required/>
+        <input id="email_input" type="text" name="email" placeholder="Email *" required/>
+        <input id="firstName_input" type="text" name="firstName" placeholder="First Name *" required/>
+        <input id="lastName_input" type="text" name="lastName" placeholder="Last Name *" required/>
+        <input id="avatar_input" type="text" name="avatar_url" placeholder="Avatar Url"/>
+        <input id="password_signup_input" type="password" name="password" placeholder="Password *" required/>
+        <input id="login_button" type="submit" value="SIGN UP">
+      </form>
     </div>
   </div>
   <div id="background_container">

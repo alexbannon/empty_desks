@@ -85,7 +85,6 @@
         obj["items"] = [];
         obj["dueDate"] = null;
         this.desk.lists.push(obj)
-        console.log(this.desk.lists)
         this.desk.$update({id: self.desk._id})
         self.newListTitle = "";
         self.$error_message = "";
@@ -101,8 +100,6 @@
         if(list.newItem){
           var keep_going = true;
           list.items.forEach(function(item){
-            console.log(item)
-            console.log(list.newItem)
             if(item == list.newItem){
               keep_going = false;
               return
@@ -137,7 +134,6 @@
     }
     this.deleteList = function(inputName, index){
       var self = this;
-      console.log(self.desk.lists[index])
       if(self.desk.lists[index].listName == inputName){
         self.desk.lists.splice(index, 1);
         self.desk.$update({id: self.desk._id})
@@ -155,7 +151,6 @@
       var self = this;
       if(self.sidebar_search.length > 5){
         $http.get("/api/searchemails/"+self.sidebar_search).then(function(response){
-          console.log(response.data)
           self.searchResults = response.data;
         })
       }
@@ -165,7 +160,6 @@
     }
 
     this.addMemberToDesk = function(id){
-      console.log(id)
       this.desk.users.push(id)
       this.desk.$update({id: self.desk._id})
 
@@ -175,7 +169,6 @@
       var self = this;
       AuthService.current_user().then(function(response){
         var userId = [response.data._id]
-        console.log(response.data)
         var obj = {};
         obj["userId"] = userId[0]
         obj["comment"] = self.newComment
@@ -183,7 +176,6 @@
           obj["picture"] = response.data.avatar_url
         }
         else if(response.data.firstName){
-          console.log(response.data.firstName)
           var first_letter = response.data.firstName.slice(0,1)
           obj["letter"] = first_letter
         }

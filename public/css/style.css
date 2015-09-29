@@ -13,7 +13,7 @@ body {
 #background_container {
   overflow-x: hidden;
 }
-.welcome_back{
+.welcome_back, .sign_up_for_free{
   color: white;
   font-family: 'Titillium Web', sans-serif;
   font-size: 2em;
@@ -56,6 +56,15 @@ body {
   background-color: rgb(40, 32, 111);
 }
 
+#sign_up_window {
+  display: none;
+  position: absolute;
+  height: 80%;
+  width: 100%;
+  top: 75px;
+  line-height: normal;
+}
+
 #username_input::-webkit-input-placeholder {
    text-align: left;
 
@@ -96,6 +105,17 @@ body {
 
 }
 
+#firstName_input, #lastName_input, #email_input, #avatar_input, #username_signup_input, #password_signup_input {
+  display: inline-block;
+  width: 40%;
+  margin: 0 auto 10px auto;
+  height: 50px;
+  font-family: 'Titillium Web', sans-serif;
+  line-height: 40px;
+  font-size: 2em;
+  position: relative;
+  top: 18px;
+}
 
 #nav_bar {
   width: 100%;
