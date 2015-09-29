@@ -10,6 +10,92 @@ body {
   margin: 0;
   padding: 0;
 }
+#background_container {
+  overflow-x: hidden;
+}
+.welcome_back{
+  color: white;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 2em;
+  position: relative;
+  top: 15px;
+}
+
+#username_input, #password_input{
+  display: block;
+  width: 80%;
+  margin: 0 auto 10px auto;
+  height: 50px;
+  font-family: 'Titillium Web', sans-serif;
+  line-height: 40px;
+  font-size: 2em;
+}
+#username_input:focus, #password_input:focus{
+  border: 1px solid rgb(30, 22, 101);
+}
+#sign_in, #sign_up{
+  font-family: 'Titillium Web', sans-serif;
+}
+#login_button {
+  display: block;
+  width: 80%;
+  margin: 50px auto 0 auto;
+  background-color: rgb(30, 62, 141);
+  height: 60px;
+  color: white;
+  font-size: 2em;
+  font-family: 'Titillium Web', sans-serif;
+  -webkit-transition: background-color 0.5s, -webkit-transform 0.5s;
+  transition: background-color 0.5s, transform 0.5s;
+}
+#login_button:hover{
+  cursor: pointer;
+  background-color: rgb(30, 22, 101);
+}
+.selected {
+  background-color: rgb(40, 32, 111);
+}
+
+#username_input::-webkit-input-placeholder {
+   text-align: left;
+
+}
+
+#username_input:-moz-placeholder { /* Firefox 18- */
+  text-align: left;
+
+}
+
+#username_input::-moz-placeholder {  /* Firefox 19+ */
+  text-align: left;
+
+}
+
+#username_input:-ms-input-placeholder {
+  text-align: left;
+
+}
+
+#password_input::-webkit-input-placeholder {
+   text-align: left;
+
+}
+
+#password_input:-moz-placeholder { /* Firefox 18- */
+  text-align: left;
+
+}
+
+#password_input::-moz-placeholder {  /* Firefox 19+ */
+  text-align: left;
+
+}
+
+#password_input:-ms-input-placeholder {
+  text-align: left;
+
+}
+
 
 #nav_bar {
   width: 100%;
@@ -546,4 +632,142 @@ input:-moz-placeholder {
 }
 #calendar {
   margin: 0 10px;
+}
+
+#overlay_signin {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+.modal {
+    width: 500px;
+    height: 500px;
+    line-height: 200px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
+    background-color: rgb(30, 122, 191);
+    border-radius: 5px;
+    text-align: center;
+    z-index: 11; /* 1px higher than the overlay layer */
+}
+#background {
+  height: 700px;
+  width: 105%;
+}
+
+#background_home_1{
+  border: 1px solid black;
+  display: inline-block;
+  width: 32.5%;
+  height: 260px;
+  overflow: hidden;
+  background: url("../images/1.png");
+  background-size: cover;
+}
+#background_home_2{
+  border: 1px solid black;
+  display: inline-block;
+  width: 32.5%;
+  height: 260px;
+  overflow: hidden;
+  background: url("../images/2.png");
+  background-size: cover;
+}
+#background_home_3{
+  border: 1px solid black;
+  display: inline-block;
+  width: 32.5%;
+  height: 260px;
+  overflow: hidden;
+  background: url("../images/3.png");
+  background-size: cover;
+}
+#background_home_4{
+  border: 1px solid black;
+  display: inline-block;
+  width: 32.5%;
+  height: 260px;
+  overflow: hidden;
+  background: url("https://img.washingtonpost.com/wp-apps/imrs.php?src=https://img.washingtonpost.com/rf/image_908w/2010-2019/WashingtonPost/2015/03/25/Interactivity/Images/iStock_000046650960_Full1427291771.jpg&w=1484");
+  background-size: cover;
+}
+#background_home_5{
+  border: 1px solid black;
+  display: inline-block;
+  width: 32.5%;
+  height: 260px;
+  overflow: hidden;
+  background: url("../images/5.png");
+  background-size: cover;
+}
+#background_home_6{
+  border: 1px solid black;
+  display: inline-block;
+  width: 32.5%;
+  height: 260px;
+  overflow: hidden;
+  background: url("../images/6.png");
+  background-size: cover;
+}
+#background_home_7{
+  border: 1px solid black;
+  display: inline-block;
+  width: 32.5%;
+  height: 260px;
+  overflow: hidden;
+  background: url("../images/7.png");
+  background-size: cover;
+}
+#background_home_8{
+  border: 1px solid black;
+  display: inline-block;
+  width: 32.5%;
+  height: 260px;
+  overflow: hidden;
+  background: url("../images/8.png");
+  background-size: cover;
+}
+#background_home_9{
+  border: 1px solid black;
+  display: inline-block;
+  width: 32.5%;
+  height: 260px;
+  overflow: hidden;
+  background: url("http://www.glad2bawoman.com/articles/sites/default/files/business-woman-writing-at-desk.jpg");
+  background-size: cover;
+}
+
+
+#sign_in_up{
+  line-height: normal;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#sign_in {
+  margin: 20px 0 0 50px;
+}
+#sign_in, #sign_up {
+  display: inline-block;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  background-color: rgb(30, 62, 141);
+  color: white;
+  line-height: 46px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.5s, -webkit-transform 0.5s;
+  transition: background-color 0.5s, transform 0.5s;
+}
+#sign_in:hover, #sign_up:hover{
+  background-color: rgb(30, 22, 101);
 }

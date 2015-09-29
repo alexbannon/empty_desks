@@ -22,7 +22,7 @@
 
   <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
   <link href='../libs/fullcalendar/dist/fullcalendar.min.css' rel='stylesheet' type='text/css'>
-
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -57,10 +57,6 @@
             <div class="dropdown_option"><a class="dropdown_link" href="/#/calendar">Calendar</a></div>
             <div class="dropdown_option"><a class="dropdown_link" href="/logout">Sign Out</a></div>
           </div>
-        {{else}}
-          <div id="user_box">
-            <div id="sign_in"><a href="/signin">Sign In</a></div>
-          </div>
         {{/if}}
       </div>
     </div>
@@ -69,21 +65,55 @@
         <a ng-href="#/"><img id="logo" src="../images/logo_empty_desks.png" alt="Empty Desks" /></a>
       </div>
     </div>
-    <div class="column-4">
-      <div class="flexsearch">
-    		<div class="flexsearch--wrapper">
-    			<form class="flexsearch--form search_bar" action="">
-    				<div class="flexsearch--input-wrapper">
-    					<input class="flexsearch--input search_input" type="search" placeholder="search">
-    				</div>
-    				<input class="flexsearch--submit" type="submit" value="&#10140;"/>
-    			</form>
-    		</div>
+    {{#if user}}
+      <div class="column-4">
+        <div class="flexsearch">
+      		<div class="flexsearch--wrapper">
+      			<form class="flexsearch--form search_bar" action="">
+      				<div class="flexsearch--input-wrapper">
+      					<input class="flexsearch--input search_input" type="search" placeholder="search">
+      				</div>
+      				<input class="flexsearch--submit" type="submit" value="&#10140;"/>
+      			</form>
+      		</div>
+        </div>
       </div>
-    </div>
+    {{/if}}
   </div>
   {{#if user}}
     <div ng-view></div>
+  {{else}}
+  <div id="overlay_signin"></div>
+  <div class="modal">
+    <div id="sign_in_up">
+      <div id="sign_in">Log In</div>
+      <div id="sign_up">Sign Up</div>
+    </div>
+    <div id="sign_in_window">
+      <span class="welcome_back">Welcome Back!</span>
+      <form id="local-sign-in" action="/login" method="post">
+        <input id="username_input" type="text" name="username" placeholder="Username"/>
+        <input id="password_input" type="password" name="password" placeholder="Password"/>
+        <input id="login_button" type="submit" value="LOG IN">
+      </form>
+    </div>
+    <div id="sign_up_window">
+      Sign Up For Free
+    </div>
+  </div>
+  <div id="background_container">
+    <div id="background">
+      <div id="background_home_1"></div>
+      <div id="background_home_2"></div>
+      <div id="background_home_3"></div>
+      <div id="background_home_4"></div>
+      <div id="background_home_5"></div>
+      <div id="background_home_6"></div>
+      <div id="background_home_7"></div>
+      <div id="background_home_8"></div>
+      <div id="background_home_9"></div>
+    </div>
+  </div>
   {{/if}}
 </body>
 </html>
